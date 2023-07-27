@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     "Select your favourite sport",
                     style: GoogleFonts.quicksand(
-                        fontSize: 18.0,
+                        fontSize: 20.0,
                         color: Colors.white,
                         fontWeight: FontWeight.w600),
                   ),
@@ -75,30 +75,26 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisCount: 2,
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
-              children: [
+              children: const [
                 CardCategory(
-                  images: "assets/images/football_badge.jpg",
+                  images: "assets/images/football_badge.png",
                   testName: "Football",
-                  brief:
-                      "cover topics such as cell structure and function, genetics, ecology",
+                  brief: "cover all football leagaues",
                 ),
                 CardCategory(
-                  images: "assets/images/football_badge.jpg",
+                  images: "assets/images/tennis_badge.png",
                   testName: "Tennis",
-                  brief:
-                      "cover topics such as cell structure and function, genetics, ecology",
+                  brief: "cover all tennis championships",
                 ),
                 CardCategory(
-                  images: "assets/images/football_badge.jpg",
+                  images: "assets/images/basketball_badge.png",
                   testName: "Basketball",
-                  brief:
-                      "cover topics such as cell structure and function, genetics, ecology",
+                  brief: "cover all basketball teams",
                 ),
                 CardCategory(
-                  images: "assets/images/football_badge.jpg",
+                  images: "assets/images/cricket_badge.png",
                   testName: "Cricket",
-                  brief:
-                      "cover topics such as cell structure and function, genetics, ecology",
+                  brief: "cover all cricket tournaments",
                 ),
               ],
             ),

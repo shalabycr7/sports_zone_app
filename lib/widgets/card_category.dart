@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sports_zone/screens/countries_screen.dart';
 
 class CardCategory extends StatelessWidget {
   final String images;
   final String testName;
-  final String? brief;
+  final String brief;
 
-  CardCategory({
+  const CardCategory({
     Key? key,
     required this.images,
     required this.testName,
-    this.brief,
+    required this.brief,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CountriesScreen(),
+          ),
+        );
+      },
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -30,12 +38,12 @@ class CardCategory extends StatelessWidget {
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
                         images,
-                        width: 50,
-                        height: 50,
+                        width: 80,
+                        height: 80,
                       ),
                       Text(
                         testName,
@@ -47,7 +55,8 @@ class CardCategory extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        brief!,
+                        textAlign: TextAlign.center,
+                        brief,
                         style: GoogleFonts.quicksand(
                           fontSize: 14,
                           color: Colors.black,
