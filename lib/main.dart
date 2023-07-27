@@ -33,6 +33,6 @@ class MyApp extends StatelessWidget {
             nextScreen:
                 alreadySeen ? const HomeScreen() : const OnBoardingScreen(),
             splashTransition: SplashTransition.fadeTransition,
-            backgroundColor: Colors.white));
+            backgroundColor: const Color.fromARGB(255, 245, 240, 252)));
   }
 }
