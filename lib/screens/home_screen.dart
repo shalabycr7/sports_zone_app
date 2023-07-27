@@ -78,22 +78,22 @@ class _HomeScreenState extends State<HomeScreen> {
               children: const [
                 CardCategory(
                   images: "assets/images/football_badge.png",
-                  testName: "Football",
+                  sportName: "Football",
                   brief: "cover all football leagaues",
                 ),
                 CardCategory(
                   images: "assets/images/tennis_badge.png",
-                  testName: "Tennis",
+                  sportName: "Tennis",
                   brief: "cover all tennis championships",
                 ),
                 CardCategory(
                   images: "assets/images/basketball_badge.png",
-                  testName: "Basketball",
+                  sportName: "Basketball",
                   brief: "cover all basketball teams",
                 ),
                 CardCategory(
                   images: "assets/images/cricket_badge.png",
-                  testName: "Cricket",
+                  sportName: "Cricket",
                   brief: "cover all cricket tournaments",
                 ),
               ],

@@ -4,26 +4,48 @@ import 'package:sports_zone/screens/countries_screen.dart';
 
 class CardCategory extends StatelessWidget {
   final String images;
-  final String testName;
+  final String sportName;
   final String brief;
 
   const CardCategory({
     Key? key,
     required this.images,
-    required this.testName,
+    required this.sportName,
     required this.brief,
   }) : super(key: key);
+
+  void showTextDialog(BuildContext context, String text) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notice'),
+          content: Text(text),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CountriesScreen(),
-          ),
-        );
+        if (sportName == 'Football') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CountriesScreen(),
+            ),
+          );
+        } else {
+          showTextDialog(context, 'Coming Soon');
+        }
       },
       child: Container(
         width: double.infinity,
@@ -46,7 +68,7 @@ class CardCategory extends StatelessWidget {
                         height: 80,
                       ),
                       Text(
-                        testName,
+                        sportName,
                         style: GoogleFonts.quicksand(
                           fontSize: 21,
                           color: Colors.blue,

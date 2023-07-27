@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:sports_zone/screens/home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -11,13 +12,11 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class OnBoardingPageState extends State<OnBoardingScreen> {
-
-
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const HomeScreen()),
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
     );
   }
 
@@ -27,10 +26,10 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
+    const bodyStyle = TextStyle(fontSize: 17.0);
 
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      titleTextStyle: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       pageColor: Colors.white,
@@ -45,10 +44,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
           allowImplicitScrolling: true,
           autoScrollDuration: 3000,
           infiniteAutoScroll: true,
-          globalHeader: const Align(
-            alignment: Alignment.topRight,
-          ),
-      
+
           pages: [
             PageViewModel(
               title: "Find Leagues Info",
@@ -70,16 +66,31 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
             ),
           ],
           onDone: () => _onIntroEnd(context),
-          onSkip: () => _onIntroEnd(context), // You can override onSkip callback
+          onSkip: () =>
+              _onIntroEnd(context), // You can override onSkip callback
           showSkipButton: true,
           skipOrBackFlex: 0,
           nextFlex: 0,
           showBackButton: false,
           //rtl: true, // Display as right-to-left
-          back: const Icon(Icons.arrow_back),
-          skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
-          next: const Icon(Icons.arrow_forward),
-          done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+          back: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFF6C63FF),
+          ),
+          skip: const Text('Skip',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF6C63FF),
+              )),
+          next: const Icon(
+            Icons.arrow_forward,
+            color: Color(0xFF6C63FF),
+          ),
+          done: const Text('Done',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF6C63FF),
+              )),
           curve: Curves.fastLinearToSlowEaseIn,
           controlsMargin: const EdgeInsets.all(16),
           controlsPadding: kIsWeb
