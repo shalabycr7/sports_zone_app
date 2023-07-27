@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Sports Zone',
-        theme: ThemeData(primaryColor: Color(0xFF6C63FF)),
+        theme: ThemeData(primaryColor: const Color(0xFF6C63FF)),
         home: AnimatedSplashScreen(
             duration: 3000,
             splash: const Icon(

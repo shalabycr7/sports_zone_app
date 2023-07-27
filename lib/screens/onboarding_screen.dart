@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:sports_zone/screens/home_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/images/$assetName', width: width);
+    return SvgPicture.asset('assets/images/$assetName', width: width);
   }
 
   @override
@@ -49,19 +49,19 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
             PageViewModel(
               title: "Find Leagues Info",
               body: "Get detailed info about your favourite team and players.",
-              image: _buildImage('slider1.png'),
+              image: _buildImage('slider1.svg'),
               decoration: pageDecoration,
             ),
             PageViewModel(
               title: "Enjoy the game",
               body: "Find who is the top scorrer in any team.",
-              image: _buildImage('slider2.png'),
+              image: _buildImage('slider2.svg'),
               decoration: pageDecoration,
             ),
             PageViewModel(
               title: "See detailed info",
               body: "Find all the info you want about any player in any team.",
-              image: _buildImage('slider3.png'),
+              image: _buildImage('slider3.svg'),
               decoration: pageDecoration,
             ),
           ],
