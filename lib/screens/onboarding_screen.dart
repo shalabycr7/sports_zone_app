@@ -32,7 +32,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
       titleTextStyle: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
+      pageColor: Color.fromARGB(255, 245, 240, 252),
       imagePadding: EdgeInsets.zero,
     );
 
@@ -40,7 +40,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
       body: SafeArea(
         child: IntroductionScreen(
           key: introKey,
-          globalBackgroundColor: Colors.white,
+          globalBackgroundColor: const Color.fromARGB(255, 245, 240, 252),
           allowImplicitScrolling: true,
           autoScrollDuration: 3000,
           infiniteAutoScroll: true,
