@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sports_zone/screens/countries_screen.dart';
+import 'package:sports_zone/screens/countres_screen.dart';
 
 class CardCategory extends StatelessWidget {
   final String images;
@@ -40,7 +40,7 @@ class CardCategory extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const CountriesScreen(),
+              builder: (context) => const MySports(),
             ),
           );
         } else {
