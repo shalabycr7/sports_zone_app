@@ -115,7 +115,7 @@ class _MySportsState extends State<MySports> {
                                                         : ScreenUtil()
                                                                 .screenHeight *
                                                             0.06,
-                                                  ), //CircleAvatar
+                                                  ),
                                                   Text(
                                                     state.ourresponse.result![i]
                                                             .countryName ??
@@ -136,21 +136,20 @@ class _MySportsState extends State<MySports> {
                                   return Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(20.0),
+                                      Expanded(
                                         child: Lottie.asset(
                                           'assets/icons/error_animation.json',
                                           width: 200.w,
-                                          height: 200.w,
-                                          fit: BoxFit.fill,
                                         ),
                                       ),
-                                      Text(
-                                        'An error has occurred',
-                                        style: GoogleFonts.quicksand(
-                                          fontSize: 16.sp,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600,
+                                      Expanded(
+                                        child: Text(
+                                          'An error has occurred',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 16.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                       ),
                                     ],
