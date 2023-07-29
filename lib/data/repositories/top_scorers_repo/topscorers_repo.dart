@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/top_scorers_model/top_scorers_model.dart';
+import '../../models/top_scorers_model/top_scorers_model.dart';
 
 class TopScorer {
   Future<TopScorersModel?> getTopScorers() async {

@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
-import '../../../models/countries_model/countries_model.dart';
-import '../../../models/plyer1_model/plyer1_model.dart';
-import '../../../models/tems_model/tems_model.dart';
-import '../../../repositories/players_repo.dart';
+import 'package:sports_zone/data/models/countries_model/countries_model.dart';
+import 'package:sports_zone/data/models/plyer1_model/plyer1_model.dart';
+import 'package:sports_zone/data/models/tems_model/tems_model.dart';
+import 'package:sports_zone/data/repositories/players_repo/players_repo.dart';
 
 part 'players_state.dart';
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../data/cubits/cubit/cubit/players_cubit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_zone/data/cubits/players_status_cubit/players_cubit.dart';
 
 final TextEditingController Search_player = TextEditingController();
 //final int index = 0;

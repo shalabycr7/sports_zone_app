@@ -3,9 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/players_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../data/cubits/cubit/teams_scores_cubit.dart';
 
 final TextEditingController Search = TextEditingController();
 

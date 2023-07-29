@@ -4,8 +4,8 @@ import 'package:meta/meta.dart';
 import '../../../screens/teams_scores_screen.dart';
 import '../../models/tems_model/tems_model.dart';
 import '../../models/top_scorers_model/top_scorers_model.dart';
-import '../../repositories/team_repo.dart';
-import '../../repositories/topscorers_repo.dart';
+import '../../repositories/teams_repo/team_repo.dart';
+import '../../repositories/top_scorers_repo/topscorers_repo.dart';
 //import '../../repositories/topscorers_repo.dart';
 //lib/data/repositories/topscorers_repo.dart
 part 'teams_scores_state.dart';

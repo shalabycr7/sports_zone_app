@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/plyer1_model/plyer1_model.dart';
-import '../models/tems_model/tems_model.dart';
+import '../../models/plyer1_model/plyer1_model.dart';
+import '../../models/tems_model/tems_model.dart';
 
 class Players {
   Future<TemsModel?> getPlayers(String tm) async {

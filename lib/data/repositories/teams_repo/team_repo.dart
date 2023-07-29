@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/tems_model/tems_model.dart';
+import '../../models/tems_model/tems_model.dart';
 
 class Teams_Scorer {
   Future<TemsModel?> getTeams(String Search) async {
