@@ -72,7 +72,11 @@ class _MySportsState extends State<MySports> {
                             } else if (state is CountiresSussess) {
                               return GridView.count(
                                 crossAxisCount:
-                                    ScreenUtil().screenWidth > 600 ? 4 : 2,
+                                    ScreenUtil().screenWidth > 600 &&
+                                            ScreenUtil().orientation ==
+                                                Orientation.landscape
+                                        ? 4
+                                        : 2,
                                 crossAxisSpacing:
                                     ScreenUtil().screenWidth * 0.04,
                                 mainAxisSpacing:

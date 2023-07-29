@@ -68,7 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: ScreenUtil().screenWidth * 0.05,
                             vertical: ScreenUtil().screenWidth * 0.04),
                         child: GridView.count(
-                          crossAxisCount: 2,
+                          crossAxisCount: ScreenUtil().screenWidth > 600 &&
+                                  ScreenUtil().orientation ==
+                                      Orientation.landscape
+                              ? 4
+                              : 2,
                           crossAxisSpacing: ScreenUtil().screenWidth * 0.04,
                           mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
                           children: const [
