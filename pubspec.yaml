@@ -20,6 +20,9 @@ dependencies:
   bloc: ^8.1.2
   http:
   flutter_bloc:
+  cached_network_image: 
+  flutter_screenutil: ^5.7.0
+  
 
 dev_dependencies:
   flutter_test:

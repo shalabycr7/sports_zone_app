@@ -4,9 +4,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_zone/screens/teams_scores_screen.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../data/cubits/cubit/cubit/players_cubit.dart';
 import '../data/cubits/cubit/teams_scores_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final TextEditingController Search_player = TextEditingController();
 //final int index = 0;
@@ -21,14 +22,9 @@ class Players_Screen extends StatefulWidget {
 }
 
 var style = GoogleFonts.nunito(
-      fontSize: 15,
-      color: Colors.black,
-    ),
-    stylebold = GoogleFonts.nunito(
-      fontSize: 15,
-      color: Colors.black,
-      //   fontWeight: FontWeight.bold,
-    );
+  fontSize: 15.sp,
+  color: Colors.black,
+);
 
 class _Players_ScreenState extends State<Players_Screen> {
   @override
@@ -40,9 +36,6 @@ class _Players_ScreenState extends State<Players_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.in1);
-    print("jnjn");
-
     // String uppercaseText = widget.tmname.toUpperCase();
     var screensize = MediaQuery.of(context).size;
     return SafeArea(
@@ -75,7 +68,9 @@ class _Players_ScreenState extends State<Players_Screen> {
                     padding: const EdgeInsets.only(left: 4, right: 4),
                     child: Container(
                       width: screensize.width * 0.96,
-                      height: screensize.height * 0.84,
+                      height: (screensize.width < 400)
+                          ? screensize.height * 0.86
+                          : screensize.height * (0.7),
                       //color: Colors.white,
                       decoration: BoxDecoration(
                         // Color.fromRGBO(246, 241, 248, 1)
@@ -96,8 +91,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
-                            width: screensize.width * (296 / 375),
-                            height: screensize.height * (42 / 812),
+                         width: screensize.width * .8,
+                                      height: screensize.height * .05,
                             child: TextFormField(
                               controller: Search_player,
                               decoration: InputDecoration(
@@ -114,14 +109,14 @@ class _Players_ScreenState extends State<Players_Screen> {
                                 ),
                                 labelText: 'Search...',
                                 labelStyle: GoogleFonts.nunito(
-                                  fontSize: 12,
+                                  fontSize: 12.sp,
                                   //fontWeight: FontWeight.bold,
                                   color: Color.fromARGB(255, 197, 194, 194),
                                 ),
                                 suffixIcon: IconButton(
                                   icon: Icon(Icons.search),
                                   color: Color.fromARGB(255, 197, 194, 194),
-                                  iconSize: 18,
+                                  iconSize: 18.sp,
                                   onPressed: () {
                                     if (Search_player.text != "")
                                       context
@@ -153,10 +148,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                           null &&
                                       state.ourresponse.result![widget.in1]
                                               .players![i].playerType !=
-                                          null &&
-                                      state.ourresponse.result![widget.in1]
-                                              .players![i].playerImage !=
-                                          "")
+                                          null)
                                     return InkWell(
                                       onTap: () {
                                         showDialog(
@@ -179,20 +171,30 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   20)),
-                                                      child: Image.network(
-                                                        state
-                                                                .ourresponse
-                                                                .result![
-                                                                    widget.in1]
-                                                                .players![i]
-                                                                .playerImage ??
-                                                            "",
-                                                        width:
-                                                            screensize.width *
-                                                                (1 / 4),
-                                                        height:
-                                                            screensize.width *
-                                                                (1 / 2),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: state
+                                                            .ourresponse
+                                                            .result![widget.in1]
+                                                            .players![i]
+                                                            .playerImage!,
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Image.asset(
+                                                                "assets/images/pngwing.com.png"),
+                                                        width: (screensize
+                                                                    .width <
+                                                                400)
+                                                            ? screensize.width *
+                                                                (1 / 4)
+                                                            : screensize.width *
+                                                                (1 / 5),
+                                                        height: (screensize
+                                                                    .width <
+                                                                400)
+                                                            ? screensize.width *
+                                                                (1 / 2)
+                                                            : screensize.width *
+                                                                (1 / 5),
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -230,8 +232,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Player Number: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -255,8 +256,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Player Country: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -280,8 +280,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Player Position: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -305,8 +304,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Player Age: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -330,8 +328,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Yellow Cards num: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -355,8 +352,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "Red Cards num: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -380,8 +376,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             children: [
                                                               Text(
                                                                 "player goals: ",
-                                                                style:
-                                                                    stylebold,
+                                                                style: style,
                                                               ),
                                                               Text(
                                                                 state
@@ -419,7 +414,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                           "Close",
                                                           style: GoogleFonts
                                                               .nunito(
-                                                            fontSize: 16,
+                                                            fontSize: 16.sp,
                                                             color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -442,48 +437,43 @@ class _Players_ScreenState extends State<Players_Screen> {
                                         elevation: 0.0,
                                         child: Container(
                                           width: screensize.width * 0.5,
-                                          height: screensize.height * (1 / 6),
+                                          height: (screensize.width < 400)
+                                              ? screensize.height * (1 / 6)
+                                              : screensize.height * 0.4,
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 20, vertical: 10),
                                           child: Column(
                                             children: [
                                               Row(
                                                 children: [
-                                                  Container(
-                                                    // Set the background color
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  20)),
-                                                      image: DecorationImage(
-                                                        image: NetworkImage(state
-                                                                .ourresponse
-                                                                .result![
-                                                                    widget.in1]
-                                                                .players![i]
-                                                                .playerImage ??
-                                                            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fdefault-avatar&psig=AOvVaw0vcnDtA5xmd5z-R8_-1nbk&ust=1690578954109000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjyxcbnr4ADFQAAAAAdAAAAABAE"),
-                                                        fit: BoxFit.cover,
-                                                        onError: (exception,
-                                                            stackTrace) {
-                                                          // Handle image loading error
-                                                          AssetImage(
-                                                              'assets/images/pngwing.com.png');
-                                                        },
-                                                      ),
-                                                      // Set the container background color
-                                                      // Set the border radius
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: state
+                                                          .ourresponse
+                                                          .result![widget.in1]
+                                                          .players![i]
+                                                          .playerImage!,
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.asset(
+                                                              "assets/images/pngwing.com.png"),
+                                                      width: (screensize.width <
+                                                              400)
+                                                          ? screensize.width *
+                                                              (1 / 4)
+                                                          : screensize.width *
+                                                              (1 / 7),
+                                                      height: (screensize
+                                                                  .width <
+                                                              400)
+                                                          ? screensize.width *
+                                                              (1 / 4)
+                                                          : screensize.height *
+                                                              (1 / 4),
                                                     ),
-                                                    padding: EdgeInsets.all(
-                                                        10), // Add some padding
-                                                    width: screensize.width *
-                                                        (1 / 4),
-                                                    height: screensize.width *
-                                                        (1 /
-                                                            4), // Set the width
-                                                    alignment: Alignment
-                                                        .center, // Center the text horizontally
                                                   ),
                                                   const SizedBox(width: 20),
                                                   Expanded(
@@ -495,16 +485,14 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                       children: [
                                                         Text(
                                                           state
-                                                                  .ourresponse
-                                                                  .result![
-                                                                      widget
-                                                                          .in1!]
-                                                                  .players![i]
-                                                                  .playerName ??
-                                                              "",
+                                                              .ourresponse
+                                                              .result![
+                                                                  widget.in1!]
+                                                              .players![i]
+                                                              .playerName!,
                                                           style: GoogleFonts
                                                               .nunito(
-                                                            fontSize: 21,
+                                                            fontSize: 21.sp,
                                                             color:
                                                                 Colors.blueGrey,
                                                             fontWeight:
@@ -519,7 +507,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               "Team Position: ",
                                                               style: GoogleFonts
                                                                   .nunito(
-                                                                fontSize: 14,
+                                                                fontSize: 14.sp,
                                                                 color: Colors
                                                                     .black,
                                                                 fontWeight:
@@ -529,17 +517,15 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             ),
                                                             Text(
                                                               state
-                                                                      .ourresponse
-                                                                      .result![
-                                                                          widget
-                                                                              .in1!]
-                                                                      .players![
-                                                                          i]
-                                                                      .playerType ??
-                                                                  "",
+                                                                  .ourresponse
+                                                                  .result![
+                                                                      widget
+                                                                          .in1!]
+                                                                  .players![i]
+                                                                  .playerType!,
                                                               style: GoogleFonts
                                                                   .nunito(
-                                                                fontSize: 14,
+                                                                fontSize: 14.sp,
                                                                 color: Colors
                                                                     .black,
                                                               ),
@@ -560,9 +546,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                 }),
                           )
                         else if (state is PlayersOne)
-                          if (state.ourresponse1.result != null &&
-                              state.ourresponse1.result![0].playerName ==
-                                  Search_player.text)
+                          if (state.ourresponse1.result != null)
                             Card(
                               color: Colors.white,
                               margin: const EdgeInsets.symmetric(vertical: 5),
@@ -579,32 +563,19 @@ class _Players_ScreenState extends State<Players_Screen> {
                                   children: [
                                     Row(
                                       children: [
-                                        Container(
-                                          // Set the background color
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(state
-                                                      .ourresponse1
-                                                      .result![0]
-                                                      .playerImage ??
-                                                  " "),
-                                              fit: BoxFit.cover,
-                                              onError: (excepton, stackTrace) {
-                                                // Handle image loading error
-                                                AssetImage(
-                                                    'assets/images/pngwing.com.png');
-                                              },
-                                            ),
-                                            // Set the container background color
-                                            // Set the border radius
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: CachedNetworkImage(
+                                            imageUrl: state.ourresponse1
+                                                .result![0].playerImage!,
+                                            errorWidget: (context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                    "assets/images/pngwing.com.png"),
+                                            width: screensize.width * (1 / 4),
+                                            height: screensize.width * (1 / 4),
                                           ),
-                                          padding: EdgeInsets.all(
-                                              10), // Add some padding
-                                          width: screensize.width * (1 / 4),
-                                          height: screensize.width *
-                                              (1 / 4), // Set the width
-                                          alignment: Alignment
-                                              .center, // Center the text horizontally
                                         ),
                                         const SizedBox(width: 20),
                                         Expanded(
@@ -615,8 +586,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                             children: [
                                               Text(
                                                 state.ourresponse1.result![0]
-                                                        .playerName ??
-                                                    "",
+                                                    .playerName!,
                                                 style: GoogleFonts.nunito(
                                                   fontSize: 21,
                                                   color: Colors.blueGrey,
@@ -629,7 +599,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                   Text(
                                                     "Team Position: ",
                                                     style: GoogleFonts.nunito(
-                                                      fontSize: 14,
+                                                      fontSize: 14.sp,
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -642,7 +612,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             .playerType ??
                                                         "",
                                                     style: GoogleFonts.nunito(
-                                                      fontSize: 14,
+                                                      fontSize: 14.sp,
                                                       color: Colors.black,
                                                     ),
                                                   ),
@@ -663,7 +633,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                               child: Text(
                                 "Not Found",
                                 style: GoogleFonts.nunito(
-                                  fontSize: 30,
+                                  fontSize: 30.sp,
                                   color: Colors.blueGrey,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 3.0,

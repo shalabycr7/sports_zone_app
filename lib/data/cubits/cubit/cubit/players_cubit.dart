@@ -21,13 +21,5 @@ class PlayersCubit extends Cubit<PlayersState> {
     Players().getPlayer(srch).then((value) {
       if (value != null) emit(PlayersOne(ourresponse1: value));
     });
-  } 
-
-    getcc() {
-    Players().getc().then((value) {
-      if (value != null) {
-        emit(Contry(ourresponse1:value));
-      }
-    });
   }
 }
