@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/countries_model/countries_model.dart';
 import '../models/plyer1_model/plyer1_model.dart';
 import '../models/tems_model/tems_model.dart';
 
 class Players {
   Future<TemsModel?> getPlayers(String tm) async {
     try {
-      var response;
+      http.Response response;
       // https://apiv2.allsportsapi.com/football/?&playerName=Cristiano Ronaldo&met=Players&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252
 
       // team name not static
@@ -35,7 +34,7 @@ class Players {
 
   Future<Plyer1Model?> getPlayer(String srch) async {
     try {
-      var response;
+      http.Response response;
       // https://apiv2.allsportsapi.com/football/?&playerName=Cristiano Ronaldo&met=Players&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252
 
       // team name not static

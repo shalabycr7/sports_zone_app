@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sports_zone/screens/teams_scores_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../data/cubits/cubit/cubit/players_cubit.dart';
-import '../data/cubits/cubit/teams_scores_cubit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final TextEditingController Search_player = TextEditingController();
@@ -75,7 +71,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                       decoration: BoxDecoration(
                         // Color.fromRGBO(246, 241, 248, 1)
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30)),
                         boxShadow: [
@@ -98,7 +94,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(16.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       //  width: 5,
                                       color: Colors.blueGrey), //<-- SEE HERE
                                 ),
@@ -111,21 +107,22 @@ class _Players_ScreenState extends State<Players_Screen> {
                                 labelStyle: GoogleFonts.nunito(
                                   fontSize: 12.sp,
                                   //fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 197, 194, 194),
+                                  color: const Color.fromARGB(255, 197, 194, 194),
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: Icon(Icons.search),
-                                  color: Color.fromARGB(255, 197, 194, 194),
+                                  icon: const Icon(Icons.search),
+                                  color: const Color.fromARGB(255, 197, 194, 194),
                                   iconSize: 18.sp,
                                   onPressed: () {
-                                    if (Search_player.text != "")
+                                    if (Search_player.text != "") {
                                       context
                                           .read<PlayersCubit>()
                                           .getPlayer1(Search_player.text);
-                                    else
+                                    } else {
                                       context
                                           .read<PlayersCubit>()
                                           .getPlayer(widget.tmname);
+                                    }
                                   },
                                 ),
                               ),
@@ -148,7 +145,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                           null &&
                                       state.ourresponse.result![widget.in1]
                                               .players![i].playerType !=
-                                          null)
+                                          null) {
                                     return InkWell(
                                       onTap: () {
                                         showDialog(
@@ -164,11 +161,11 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                   backgroundColor: Colors.white,
                                                   title: Padding(
                                                     padding:
-                                                        EdgeInsets.symmetric(
+                                                        const EdgeInsets.symmetric(
                                                             horizontal: 30),
                                                     child: ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.all(
+                                                          const BorderRadius.all(
                                                               Radius.circular(
                                                                   20)),
                                                       child: CachedNetworkImage(
@@ -403,7 +400,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                                       .blueGrey),
                                                           minimumSize:
                                                               MaterialStateProperty
-                                                                  .all(Size(120,
+                                                                  .all(const Size(120,
                                                                       40)), // Adjust the width and height as needed
                                                         ),
                                                         onPressed: () {
@@ -487,7 +484,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                           state
                                                               .ourresponse
                                                               .result![
-                                                                  widget.in1!]
+                                                                  widget.in1]
                                                               .players![i]
                                                               .playerName!,
                                                           style: GoogleFonts
@@ -520,7 +517,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                                   .ourresponse
                                                                   .result![
                                                                       widget
-                                                                          .in1!]
+                                                                          .in1]
                                                                   .players![i]
                                                                   .playerType!,
                                                               style: GoogleFonts
@@ -543,6 +540,9 @@ class _Players_ScreenState extends State<Players_Screen> {
                                         ),
                                       ),
                                     );
+                                  return null;
+                                  }
+                                  return null;
                                 }),
                           )
                         else if (state is PlayersOne)
@@ -641,7 +641,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                               ),
                             )
                         else
-                          Center(
+                          const Center(
                             child: CircularProgressIndicator(),
                           )
                       ]),

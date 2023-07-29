@@ -7,14 +7,15 @@ import '../models/tems_model/tems_model.dart';
 class Teams_Scorer {
   Future<TemsModel?> getTeams(String Search) async {
     try {
-      var response;
+      http.Response response;
       // leagueid not static
-      if (Search != null)
+      if (Search != null) {
         response = await http.get(Uri.parse(
             "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=205&teamName=$Search"));
-      else
+      } else {
         response = await http.get(Uri.parse(
             "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=205"));
+      }
       Map<String, dynamic> decodedresponse = json.decode(response.body);
       if (response.statusCode == 200) {
         TemsModel data = TemsModel.fromJson(decodedresponse);

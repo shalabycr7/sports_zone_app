@@ -1,14 +1,11 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_zone/screens/players_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../data/cubits/cubit/teams_scores_cubit.dart';
-import '../main.dart';
 
 final TextEditingController Search = TextEditingController();
 
@@ -47,7 +44,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
               backgroundColor: Colors.white,
               toolbarHeight: 75.0,
               actions: <Widget>[
-                Container(
+                SizedBox(
                     width: screensize.width * 0.5,
                     height: 75,
                     child: Padding(
@@ -58,9 +55,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             // blue grey
-                            primary: (state is TeamsScoresTeams)
+                            backgroundColor: (state is TeamsScoresTeams)
                                 ? Colors.blueGrey
-                                : Color.fromARGB(255, 197, 194, 194),
+                                : const Color.fromARGB(255, 197, 194, 194),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ), // Background color
@@ -76,16 +73,16 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                             ),
                           )),
                     )),
-                Container(
+                SizedBox(
                     width: screensize.width * 0.5,
                     height: 75,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: (state is TeamsScoresTopScorers)
+                            backgroundColor: (state is TeamsScoresTopScorers)
                                 ? Colors.blueGrey
-                                : Color.fromARGB(255, 197, 194, 194),
+                                : const Color.fromARGB(255, 197, 194, 194),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ), // Background color
@@ -125,7 +122,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                             decoration: BoxDecoration(
                               // Color.fromRGBO(246, 241, 248, 1)
                               color: Colors.white,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(30),
                                   topRight: Radius.circular(30)),
                               boxShadow: [
@@ -155,7 +152,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(16.0),
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                                 //  width: 5,
                                                 color: Colors
                                                     .blueGrey), //<-- SEE HERE
@@ -170,23 +167,24 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                                           labelStyle: GoogleFonts.nunito(
                                             fontSize: 12.sp,
                                             //fontWeight: FontWeight.bold,
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 197, 194, 194),
                                           ),
                                           suffixIcon: IconButton(
-                                            icon: Icon(Icons.search),
-                                            color: Color.fromARGB(
+                                            icon: const Icon(Icons.search),
+                                            color: const Color.fromARGB(
                                                 255, 197, 194, 194),
                                             iconSize: 18.sp,
                                             onPressed: () {
-                                              if (Search.text != "")
+                                              if (Search.text != "") {
                                                 context
                                                     .read<TeamsScoresCubit>()
                                                     .getTeam();
-                                              else
+                                              } else {
                                                 context
                                                     .read<TeamsScoresCubit>()
                                                     .getTeam();
+                                              }
                                             },
                                           ),
                                         ),
@@ -293,8 +291,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                                       ),
                                     ),
                                   )
-                                else if (state is TeamsScoresTopScorers &&
-                                    state.response.result != null)
+                                else if (state is TeamsScoresTopScorers)
                                   Expanded(
                                     child: SingleChildScrollView(
                                       child: Column(
@@ -356,7 +353,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                                                                       (1 /
                                                                           26)), // Set the border radius
                                                             ),
-                                                            padding: EdgeInsets.all(
+                                                            padding: const EdgeInsets.all(
                                                                 10), // Add some padding
                                                             width: (screensize
                                                                         .width <
@@ -489,13 +486,13 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen> {
                                                 ),
                                               )
                                             else
-                                              Text("shshs"),
+                                              const Text("shshs"),
                                         ],
                                       ),
                                     ),
                                   )
                                 else
-                                  Center(
+                                  const Center(
                                     child: CircularProgressIndicator(),
                                   )
                               ],
