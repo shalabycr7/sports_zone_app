@@ -1,8 +1,12 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/screens/Leagues_Screen.dart';
+import 'package:sports_zone/styles/gradient_decoration.dart';
 
 class MySports extends StatefulWidget {
   const MySports({super.key});
@@ -14,56 +18,45 @@ class MySports extends StatefulWidget {
 class _MySportsState extends State<MySports> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<CountiresCubit>().getCountiers();
   }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
       child: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 78, 84, 200),
-                Color.fromARGB(255, 67, 72, 169),
-              ],
-            ),
-          ),
+          decoration: blueGradient,
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(20),
+              Padding(
+                padding: const EdgeInsets.all(20),
                 child: Text(
                   'Countires',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.quicksand(
+                    fontSize: 18.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Expanded(
                   child: Container(
-                      height: MediaQuery.of(context).size.height * 4 / 5,
+                      height: ScreenUtil().screenHeight * 4 / 5,
                       decoration: const BoxDecoration(
-                          color: Color.fromRGBO(246, 241, 248, 1),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(60),
-                              topRight: Radius.circular(60))),
-                      width: MediaQuery.of(context).size.width,
+                        color: Color.fromRGBO(246, 241, 248, 1),
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(25),
+                        ),
+                      ),
+                      width: ScreenUtil().screenWidth,
                       child: Padding(
-                        padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.width * .08),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: ScreenUtil().screenWidth * 0.05,
+                            vertical: ScreenUtil().screenWidth * 0.04),
                         child: BlocBuilder<CountiresCubit, CountiresState>(
                           builder: (context, state) {
-                            // if (state is CountiresInitial) {
-                            //   context
-                            //       .read<CountiresCubit>()
-                            //       .getCountiers();
-                            // } else
                             if (state is CountiresLoadind) {
                               return const Center(
                                 child: CircularProgressIndicator(),
@@ -71,9 +64,12 @@ class _MySportsState extends State<MySports> {
                             } else if (state is CountiresSussess)
                               // ignore: curly_braces_in_flow_control_structures
                               return GridView.count(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 50,
-                                crossAxisSpacing: 50,
+                                crossAxisCount:
+                                    ScreenUtil().screenWidth > 600 ? 4 : 2,
+                                crossAxisSpacing:
+                                    ScreenUtil().screenWidth * 0.04,
+                                mainAxisSpacing:
+                                    ScreenUtil().screenWidth * 0.04,
                                 children: <Widget>[
                                   for (int i = 0;
                                       i < state.ourresponse.result!.length;
@@ -92,10 +88,11 @@ class _MySportsState extends State<MySports> {
                                           );
                                         },
                                         child: Container(
-                                          height: 60,
-                                          width: 60,
-                                          color: const Color.fromARGB(
-                                              255, 255, 255, 255),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white,
+                                          ),
                                           child: Column(
                                             children: [
                                               CachedNetworkImage(
@@ -106,15 +103,15 @@ class _MySportsState extends State<MySports> {
                                                     'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
                                                 fit: BoxFit.cover,
                                               ),
-                                              const SizedBox(
-                                                height: 15,
-                                              ),
+                                              const Spacer(),
                                               Text(
                                                 state.ourresponse.result![i]
                                                         .countryName ??
-                                                    '555555555555555',
-                                                style: const TextStyle(
-                                                    color: Colors.orange),
+                                                    'Unknown',
+                                                style: GoogleFonts.quicksand(
+                                                  fontSize: 14.sp,
+                                                  color: Colors.black,
+                                                ),
                                               ),
                                             ],
                                           ),

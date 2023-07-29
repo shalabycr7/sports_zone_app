@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_zone/screens/countres_screen.dart';
 
@@ -61,18 +62,18 @@ class CardCategory extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Flexible(
               child: Text(
                 sportName,
                 style: GoogleFonts.quicksand(
-                  fontSize: 21,
+                  fontSize: 18.sp,
                   color: Colors.blue,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -80,13 +81,12 @@ class CardCategory extends StatelessWidget {
                   brief,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.quicksand(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     color: Colors.black,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
           ],
         ),
       ),
