@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/gradient_decoration.dart';
@@ -39,60 +40,76 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              decoration: blueGradient,
+              decoration: BoxDecoration(color: Colors.white),
               child: Column(
                 children: [
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.all(20),
-                      child: TitleRow(
-                        title: 'Select your favourite sport',
+                      child: Text(
+                        'Select Your Favourate Sport',
+                        style: GoogleFonts.nunito(
+                            color: Colors.blueGrey,
+                            fontSize: 30,
+                            letterSpacing: 3,
+                            fontWeight: FontWeight.bold),
                       )),
                   Expanded(
-                      child: Container(
-                          height: ScreenUtil().screenHeight * 4 / 5,
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(246, 241, 248, 1),
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(25),
-                            ),
+                      child: Padding(
+                    padding: const EdgeInsets.only(left: 4, right: 4),
+                    child: Container(
+                        height: ScreenUtil().screenHeight * 4 / 5,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(25),
                           ),
-                          width: ScreenUtil().screenWidth,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().screenWidth * 0.05,
-                                vertical: ScreenUtil().screenWidth * 0.04),
-                            child: GridView.count(
-                              crossAxisCount: ScreenUtil().screenWidth > 600 &&
-                                      ScreenUtil().orientation ==
-                                          Orientation.landscape
-                                  ? 4
-                                  : 2,
-                              crossAxisSpacing: ScreenUtil().screenWidth * 0.04,
-                              mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
-                              children: const [
-                                CardCategory(
-                                  images: "assets/images/football_badge.png",
-                                  sportName: "Football",
-                                  brief: "cover all football leagaues",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/tennis_badge.png",
-                                  sportName: "Tennis",
-                                  brief: "cover all tennis championships",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/basketball_badge.png",
-                                  sportName: "Basketball",
-                                  brief: "cover all basketball teams",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/cricket_badge.png",
-                                  sportName: "Cricket",
-                                  brief: "cover all cricket tournaments",
-                                ),
-                              ],
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 10.0,
+                              blurRadius: 10.0,
+                              offset: Offset(0, 10),
                             ),
-                          ))),
+                          ],
+                        ),
+                        width: ScreenUtil().screenWidth,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: ScreenUtil().screenWidth * 0.05,
+                              vertical: ScreenUtil().screenWidth * 0.04),
+                          child: GridView.count(
+                            crossAxisCount: ScreenUtil().screenWidth > 600 &&
+                                    ScreenUtil().orientation ==
+                                        Orientation.landscape
+                                ? 4
+                                : 2,
+                            crossAxisSpacing: ScreenUtil().screenWidth * 0.04,
+                            mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
+                            children: const [
+                              CardCategory(
+                                images: "assets/images/football_badge.png",
+                                sportName: "Football",
+                                brief: "cover all football leagaues",
+                              ),
+                              CardCategory(
+                                images: "assets/images/tennis_badge.png",
+                                sportName: "Tennis",
+                                brief: "cover all tennis championships",
+                              ),
+                              CardCategory(
+                                images: "assets/images/basketball_badge.png",
+                                sportName: "Basketball",
+                                brief: "cover all basketball teams",
+                              ),
+                              CardCategory(
+                                images: "assets/images/cricket_badge.png",
+                                sportName: "Cricket",
+                                brief: "cover all cricket tournaments",
+                              ),
+                            ],
+                          ),
+                        )),
+                  )),
                 ],
               ))),
     );
