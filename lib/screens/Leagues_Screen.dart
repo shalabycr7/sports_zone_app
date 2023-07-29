@@ -81,7 +81,8 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                 ),
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                        horizontal: 10),
+                                                        horizontal: 10,
+                                                        vertical: 5),
                                                 margin:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 10),
@@ -105,14 +106,22 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      height: 80,
-                                                      width: 80,
+                                                      height: 80.h,
+                                                      width: 80.w,
                                                       child: CachedNetworkImage(
                                                         imageUrl: state
                                                                 .ourrresponse
                                                                 .result![i]
                                                                 .leagueLogo ??
-                                                            'https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png',
+                                                            "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            const Icon(
+                                                          Icons.error,
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
