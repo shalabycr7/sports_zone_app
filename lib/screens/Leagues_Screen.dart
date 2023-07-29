@@ -97,22 +97,22 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                                 .result![i]
                                                                 .leagueName ??
                                                             'Unkown league',
-                                                        style:
-                                                            GoogleFonts.quicksand(
-                                                          fontSize: 13.sp,
+                                                        style: GoogleFonts
+                                                            .quicksand(
+                                                          fontSize: 14.sp,
                                                           color: Colors.black,
                                                         ),
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      height: 75,
-                                                      width: 75,
+                                                      height: 80,
+                                                      width: 80,
                                                       child: CachedNetworkImage(
                                                         imageUrl: state
                                                                 .ourrresponse
                                                                 .result![i]
                                                                 .leagueLogo ??
-                                                            'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
+                                                            'https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png',
                                                       ),
                                                     ),
                                                   ],
