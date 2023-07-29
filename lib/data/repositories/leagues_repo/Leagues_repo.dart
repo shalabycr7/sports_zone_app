@@ -10,7 +10,7 @@ class LeaguesModelsRepo {
   Future<Zsc?> getLeaguesModels() async {
     try {
       var response = await http.get(Uri.parse(
-          "https://apiv2.allsportsapi.com/football/?met=Leagues&countryid=200&APIkey=37362abc71829b010e3825db2d37074e6b487ef3a9af53f04f23b876420e5963"));
+          "https://apiv2.allsportsapi.com/football/?met=Leagues&countryid=200&APIkey=e9b633c2759b431301301d00f9a9a3809b238030211a54b71e43e1e0db147f13"));
 
       Map<String, dynamic> deCodedResponse = json.decode(response.body);
       if (response.statusCode == 200) {
