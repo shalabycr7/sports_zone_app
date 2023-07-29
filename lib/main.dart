@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sports_zone/data/cubits/Leagues_cubit/cubit/Leagues_cubit.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
+import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
 

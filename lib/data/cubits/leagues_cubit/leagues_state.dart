@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:sports_zone/data/models/leaguesModele/leagues.dart';
+part of 'leagues_cubit.dart';
 
 @immutable
 abstract class LeaguesState {}
