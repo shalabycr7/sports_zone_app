@@ -76,23 +76,23 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
           skipOrBackFlex: 0,
           nextFlex: 0,
           showBackButton: false,
-          back: const Icon(
+          back:  Icon(
             Icons.arrow_back,
-            color: Color(0xFF6C63FF),
+            color: Theme.of(context).primaryColor,
           ),
           skip: Text('Skip',
               style: GoogleFonts.quicksand(
                   fontSize: 13.0.sp,
-                  color: const Color(0xFF6C63FF),
+                  color:  Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600)),
-          next: const Icon(
+          next:  Icon(
             Icons.arrow_forward,
-            color: Color(0xFF6C63FF),
+            color: Theme.of(context).primaryColor,
           ),
           done: Text('Done',
               style: GoogleFonts.quicksand(
                   fontSize: 13.0.sp,
-                  color: const Color(0xFF6C63FF),
+                  color:  Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600)),
           curve: Curves.fastLinearToSlowEaseIn,
           controlsMargin: const EdgeInsets.all(16),

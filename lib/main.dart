@@ -40,13 +40,16 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Sports Zone',
-              theme: ThemeData(primaryColor: const Color(0xFF6C63FF)),
+              theme: ThemeData(
+                primaryColor: const Color(0xFF6C63FF),
+                dialogBackgroundColor: const Color.fromARGB(255, 245, 240, 252),
+              ),
               home: AnimatedSplashScreen(
                   duration: 3000,
-                  splash: const Icon(
+                  splash: Icon(
                     Icons.sports_basketball,
                     size: 90,
-                    color: Color(0xFF6C63FF),
+                    color: Theme.of(context).primaryColor,
                   ),
                   nextScreen: alreadySeen
                       ? const HomeScreen()
