@@ -90,21 +90,23 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      state
-                                                              .ourrresponse
-                                                              .result![i]
-                                                              .leagueName ??
-                                                          'Unkown league',
-                                                      style:
-                                                          GoogleFonts.quicksand(
-                                                        fontSize: 13.sp,
-                                                        color: Colors.black,
+                                                    Expanded(
+                                                      child: Text(
+                                                        state
+                                                                .ourrresponse
+                                                                .result![i]
+                                                                .leagueName ??
+                                                            'Unkown league',
+                                                        style:
+                                                            GoogleFonts.quicksand(
+                                                          fontSize: 13.sp,
+                                                          color: Colors.black,
+                                                        ),
                                                       ),
                                                     ),
                                                     SizedBox(
-                                                      height: 80,
-                                                      width: 80,
+                                                      height: 75,
+                                                      width: 75,
                                                       child: CachedNetworkImage(
                                                         imageUrl: state
                                                                 .ourrresponse

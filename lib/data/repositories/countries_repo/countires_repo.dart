@@ -1,8 +1,8 @@
 // ignore: unused_import
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sports_zone/data/models/countries_model/countries_model.dart';
 
-import 'package:sports_zone/data/models/Countires/countries_model.dart';
 
 class CountiersModelsRepo {
   Future<CountiersModels?> getCountiersModels() async {

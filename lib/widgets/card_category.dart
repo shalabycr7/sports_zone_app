@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sports_zone/screens/countres_screen.dart';
+import 'package:sports_zone/screens/countries_screen.dart';
 
 class CardCategory extends StatelessWidget {
   final String images;

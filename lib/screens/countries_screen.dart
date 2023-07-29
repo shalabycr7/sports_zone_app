@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
-import 'package:sports_zone/screens/Leagues_Screen.dart';
+import 'package:sports_zone/screens/leagues_Screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/gradient_decoration.dart';
 

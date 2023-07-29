@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
-import 'package:sports_zone/data/models/Countires/countries_model.dart';
-import 'package:sports_zone/data/repositories/Countires_repo.dart';
+import 'package:sports_zone/data/models/countries_model/countries_model.dart';
+import 'package:sports_zone/data/repositories/countries_repo/countires_repo.dart';
 
 part 'countires_state.dart';
 

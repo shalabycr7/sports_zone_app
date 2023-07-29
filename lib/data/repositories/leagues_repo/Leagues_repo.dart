@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 // ignore: unused_import
 
-import 'package:sports_zone/data/models/leaguesModele/legues_model.dart';
+import 'package:sports_zone/data/models/leagues_model/legues_model.dart';
 
 class LeaguesModelsRepo {
   Future<Zsc?> getLeaguesModels() async {
