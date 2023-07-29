@@ -67,9 +67,9 @@ class CardCategory extends StatelessWidget {
             Text(
               sportName,
               style: GoogleFonts.quicksand(
-                fontSize: 17.sp,
+                fontSize: 16.sp,
                 color: Colors.blue,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
               ),
             ),
             Flexible(
@@ -80,7 +80,7 @@ class CardCategory extends StatelessWidget {
                   brief,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.quicksand(
-                    fontSize: 14.sp,
+                    fontSize: 13.sp,
                     color: Colors.black,
                   ),
                 ),

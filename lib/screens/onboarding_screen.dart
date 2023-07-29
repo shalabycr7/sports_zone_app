@@ -42,9 +42,9 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
       imagePadding: EdgeInsets.zero,
     );
 
-    return Scaffold(
-      body: SafeArea(
-        child: IntroductionScreen(
+    return SafeArea(
+      child: Scaffold(
+        body: IntroductionScreen(
           key: introKey,
           globalBackgroundColor: const Color.fromARGB(255, 245, 240, 252),
           allowImplicitScrolling: true,
@@ -76,23 +76,23 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
           skipOrBackFlex: 0,
           nextFlex: 0,
           showBackButton: false,
-          back:  Icon(
+          back: Icon(
             Icons.arrow_back,
             color: Theme.of(context).primaryColor,
           ),
           skip: Text('Skip',
               style: GoogleFonts.quicksand(
                   fontSize: 13.0.sp,
-                  color:  Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600)),
-          next:  Icon(
+          next: Icon(
             Icons.arrow_forward,
             color: Theme.of(context).primaryColor,
           ),
           done: Text('Done',
               style: GoogleFonts.quicksand(
                   fontSize: 13.0.sp,
-                  color:  Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600)),
           curve: Curves.fastLinearToSlowEaseIn,
           controlsMargin: const EdgeInsets.all(16),
