@@ -1,5 +1,3 @@
-import 'package:blurrycontainer/blurrycontainer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,13 +30,23 @@ class _MySportsState extends State<MySports> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: Text(
-                  'Countires',
-                  style: GoogleFonts.quicksand(
-                    fontSize: 18.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Select the country",
+                      style: GoogleFonts.quicksand(
+                        fontSize: 18.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Icon(Icons.arrow_circle_right_outlined,
+                        color: Colors.white, size: 22.sp)
+                  ],
                 ),
               ),
               Expanded(
@@ -61,8 +69,7 @@ class _MySportsState extends State<MySports> {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
-                            } else if (state is CountiresSussess)
-                              // ignore: curly_braces_in_flow_control_structures
+                            } else if (state is CountiresSussess) {
                               return GridView.count(
                                 crossAxisCount:
                                     ScreenUtil().screenWidth > 600 ? 4 : 2,
@@ -88,22 +95,29 @@ class _MySportsState extends State<MySports> {
                                           );
                                         },
                                         child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
                                             color: Colors.white,
                                           ),
                                           child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              CachedNetworkImage(
-                                                imageUrl: state
-                                                        .ourresponse
-                                                        .result![i]
-                                                        .countryLogo ??
-                                                    'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
-                                                fit: BoxFit.cover,
+                                              CircleAvatar(
+                                                radius: 50,
+                                                child: CircleAvatar(
+                                                  backgroundImage: NetworkImage(
+                                                      state
+                                                              .ourresponse
+                                                              .result![i]
+                                                              .countryLogo ??
+                                                          'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2'), //NetworkImage
+                                                  radius: 50,
+                                                ), //CircleAvatar
                                               ),
-                                              const Spacer(),
                                               Text(
                                                 state.ourresponse.result![i]
                                                         .countryName ??
@@ -119,7 +133,7 @@ class _MySportsState extends State<MySports> {
                                       ),
                                 ],
                               );
-                            else {
+                            } else {
                               return const Center(
                                 child: Text('error'),
                               );
