@@ -3,8 +3,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
+import 'package:sports_zone/shared/title_row.dart';
+import 'package:sports_zone/styles/gradient_decoration.dart';
 
 class LeaguesScreen extends StatefulWidget {
   const LeaguesScreen({
@@ -25,54 +30,39 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    var screenSize = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
             body: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromARGB(255, 78, 84, 200),
-                      Color.fromARGB(255, 67, 72, 169),
-                    ],
-                  ),
-                ),
+                decoration: blueGradient,
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text(
-                        'Leagues',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
+                        padding: EdgeInsets.all(20),
+                        child: TitleRow(
+                          title: 'Select the League',
+                        )),
                     Expanded(
                         child: Container(
-                            height: MediaQuery.of(context).size.height * 4 / 5,
+                            height: ScreenUtil().screenHeight * 4 / 5,
                             decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(60),
-                                    topRight: Radius.circular(60))),
-                            width: MediaQuery.of(context).size.width,
+                              color: Color.fromRGBO(246, 241, 248, 1),
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(25),
+                              ),
+                            ),
+                            width: ScreenUtil().screenWidth,
                             child: Padding(
-                              padding: EdgeInsets.all(
-                                  MediaQuery.of(context).size.width * .08),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ScreenUtil().screenWidth * 0.05,
+                                  vertical: ScreenUtil().screenWidth * 0.04),
                               child: BlocBuilder<LeaguesCubit, LeaguesState>(
                                 builder: (context, state) {
-                                  // if (state is LeaguesInitial) {
-                                  //   context.read<LeaguesCubit>().getLeagues();
-                                  // } else
                                   if (state is LeaguesLoadind) {
                                     return const Center(
                                       child: CircularProgressIndicator(),
                                     );
-                                  } else if (state is LeaguesSussess)
-                                    // ignore: curly_braces_in_flow_control_structures
+                                  } else if (state is LeaguesSussess) {
                                     return SingleChildScrollView(
-                                      scrollDirection: Axis.vertical,
                                       child: Column(
                                         children: [
                                           for (int i = 0;
@@ -80,60 +70,48 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                   state.ourrresponse.result!
                                                       .length;
                                               i++)
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+                                            InkWell(
+                                              onTap: () {},
                                               child: Container(
-                                                // decoration: BoxDecoration(
-                                                //     borderRadius:
-                                                //         BorderRadius.circular(
-                                                //             9)),
-                                                color: Colors.white,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.white60,
+                                                ),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.start,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        state
-                                                                .ourrresponse
-                                                                .result![i]
-                                                                .leagueName ??
-                                                            '',
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    10,
-                                                                    10)),
+                                                    Text(
+                                                      state
+                                                              .ourrresponse
+                                                              .result![i]
+                                                              .leagueName ??
+                                                          'Unkown league',
+                                                      style:
+                                                          GoogleFonts.quicksand(
+                                                        fontSize: 13.sp,
+                                                        color: Colors.black,
                                                       ),
                                                     ),
-                                                    Spacer(),
-                                                    Container(
-                                                      height: 60,
-                                                      width: 60,
-
-                                                      color: Colors.white,
-                                                      // child: InkWell(
-                                                      //   onTap: () => Navigator.push(
-                                                      //       context,
-                                                      //       MaterialPageRoute(
-                                                      //         builder: (context) =>
-                                                      //             const MySports(),
-                                                      //       )),
+                                                    SizedBox(
+                                                      height: 80,
+                                                      width: 80,
                                                       child: CachedNetworkImage(
                                                         imageUrl: state
                                                                 .ourrresponse
                                                                 .result![i]
                                                                 .leagueLogo ??
                                                             'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
-                                                        // fit: BoxFit.cover,
                                                       ),
-                                                      //            ),
                                                     ),
                                                   ],
                                                 ),
@@ -142,9 +120,29 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                         ],
                                       ),
                                     );
-                                  else {
-                                    return const Center(
-                                      child: Text('error'),
+                                  } else {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Lottie.asset(
+                                            'assets/icons/error_animation.json',
+                                            width: 200.w,
+                                            height: 200.w,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Text(
+                                          'An error has occurred',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 16.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
                                     );
                                   }
                                 },
