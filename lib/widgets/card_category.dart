@@ -49,34 +49,33 @@ class CardCategory extends StatelessWidget {
         }
       },
       child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: Colors.white60,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Expanded(
+            Flexible(
+              flex: 1,
               child: Image.asset(
                 images,
-                fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 10.h),
-            Flexible(
-              child: Text(
-                sportName,
-                style: GoogleFonts.quicksand(
-                  fontSize: 18.sp,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w600,
-                ),
+            Text(
+              sportName,
+              style: GoogleFonts.quicksand(
+                fontSize: 17.sp,
+                color: Colors.blue,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 10.h),
             Flexible(
+              flex: 1,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   brief,
                   textAlign: TextAlign.center,
