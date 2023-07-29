@@ -8,17 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
-import 'package:sports_zone/shared/title_row.dart';
-import 'package:sports_zone/styles/gradient_decoration.dart';
 
-int CountriesKey = 0;
+int countriesKey = 0;
 
 class LeaguesScreen extends StatefulWidget {
-  // final int? Leagues;
-  LeaguesScreen({
-    super.key,
-    // required this.Leagues,
-  });
+  final int loop;
+  const LeaguesScreen({super.key, required this.loop});
 
   @override
   State<LeaguesScreen> createState() => _LeaguesScreenState();
@@ -37,13 +32,13 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
     return SafeArea(
         child: Scaffold(
             body: Container(
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(color: Colors.white),
                 // decoration: blueGradient,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Text(
                           'Select the League',
                           style: GoogleFonts.nunito(
@@ -67,7 +62,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                           height: ScreenUtil().screenHeight * 4 / 5,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.vertical(
+                            borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(25),
                             ),
                             boxShadow: [
@@ -75,7 +70,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                 color: Colors.black.withOpacity(0.3),
                                 spreadRadius: 10.0,
                                 blurRadius: 10.0,
-                                offset: Offset(0, 10),
+                                offset: const Offset(0, 10),
                               ),
                             ],
                           ),
@@ -99,64 +94,70 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                 state.ourrresponse.result!
                                                     .length;
                                             i++)
-                                          // if (state.ourrresponse.result![i].countryKey == 10)
-                                          InkWell(
-                                            onTap: () {},
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                color: Colors.white,
-                                              ),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5),
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      state
-                                                              .ourrresponse
-                                                              .result![i]
-                                                              .leagueName ??
-                                                          'Unkown league',
-                                                      style: GoogleFonts.nunito(
-                                                          fontSize: 14.sp,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 80.h,
-                                                    width: 80.w,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: state
-                                                              .ourrresponse
-                                                              .result![i]
-                                                              .leagueLogo ??
-                                                          "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          const CircularProgressIndicator(),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          const Icon(
-                                                        Icons.error,
+                                          if (state.ourrresponse.result![i]
+                                                  .countryKey ==
+                                              widget.loop)
+                                            InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.white,
+                                                ),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        state
+                                                                .ourrresponse
+                                                                .result![i]
+                                                                .leagueName ??
+                                                            'Unkown league',
+                                                        style:
+                                                            GoogleFonts.nunito(
+                                                                fontSize: 14.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                    SizedBox(
+                                                      height: 80.h,
+                                                      width: 80.w,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: state
+                                                                .ourrresponse
+                                                                .result![i]
+                                                                .leagueLogo ??
+                                                            "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            const Icon(
+                                                          Icons.error,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          )
+                                            )
                                       ],
                                     ),
                                   );

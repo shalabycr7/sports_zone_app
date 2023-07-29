@@ -4,9 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
-import 'package:sports_zone/screens/leagues_Screen.dart';
-import 'package:sports_zone/shared/title_row.dart';
-import 'package:sports_zone/styles/gradient_decoration.dart';
+import 'package:sports_zone/screens/leagues_screen.dart';
 
 class MySports extends StatefulWidget {
   const MySports({super.key});
@@ -27,11 +25,11 @@ class _MySportsState extends State<MySports> {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(
                 children: [
                   Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Text(
                         'Select the Country',
                         style: GoogleFonts.nunito(
@@ -47,7 +45,7 @@ class _MySportsState extends State<MySports> {
                         height: ScreenUtil().screenHeight * 4 / 5,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.vertical(
+                          borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(25),
                           ),
                           boxShadow: [
@@ -55,7 +53,7 @@ class _MySportsState extends State<MySports> {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 10.0,
                               blurRadius: 10.0,
-                              offset: Offset(0, 10),
+                              offset: const Offset(0, 10),
                             ),
                           ],
                         ),
@@ -94,10 +92,12 @@ class _MySportsState extends State<MySports> {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) => LeaguesScreen(
-
-                                                    // Leagues:state.ourresponse.result![i].countryKey!
-                                                    ),
+                                                builder: (context) =>
+                                                    LeaguesScreen(
+                                                        loop: state
+                                                            .ourresponse
+                                                            .result![i]
+                                                            .countryKey!),
                                               ),
                                             );
                                           },
