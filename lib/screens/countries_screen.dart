@@ -76,13 +76,17 @@ class _MySportsState extends State<MySports> {
                                             null)
                                           InkWell(
                                             onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const LeaguesScreen(),
-                                                ),
-                                              );
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LeaguesScreen(
+                                                        loop: state
+                                                            .ourresponse
+                                                            .result![i]
+                                                            .countryKey!),
+                                              ),
+                                            );
                                             },
                                             child: Container(
                                               padding:

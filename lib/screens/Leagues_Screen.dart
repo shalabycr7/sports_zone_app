@@ -11,10 +11,11 @@ import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
 import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/gradient_decoration.dart';
 
+int countriesKey = 0;
+
 class LeaguesScreen extends StatefulWidget {
-  const LeaguesScreen({
-    super.key,
-  });
+  final int loop;
+  const LeaguesScreen({super.key, required this.loop});
 
   @override
   State<LeaguesScreen> createState() => _LeaguesScreenState();
@@ -70,64 +71,67 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                   state.ourrresponse.result!
                                                       .length;
                                               i++)
-                                            InkWell(
-                                              onTap: () {},
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  color: Colors.white60,
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5),
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        state
-                                                                .ourrresponse
-                                                                .result![i]
-                                                                .leagueName ??
-                                                            'Unkown league',
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                          fontSize: 14.sp,
-                                                          color: Colors.black,
+                                            if (state.ourrresponse.result![i]
+                                                    .countryKey ==
+                                                widget.loop)
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    color: Colors.white60,
+                                                  ),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 5),
+                                                  margin: const EdgeInsets
+                                                      .symmetric(vertical: 10),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          state
+                                                                  .ourrresponse
+                                                                  .result![i]
+                                                                  .leagueName ??
+                                                              'Unkown league',
+                                                          style: GoogleFonts
+                                                              .quicksand(
+                                                            fontSize: 14.sp,
+                                                            color: Colors.black,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 80.h,
-                                                      width: 80.w,
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: state
-                                                                .ourrresponse
-                                                                .result![i]
-                                                                .leagueLogo ??
-                                                            "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            const CircularProgressIndicator(),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            const Icon(
-                                                          Icons.error,
+                                                      SizedBox(
+                                                        height: 80.h,
+                                                        width: 80.w,
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl: state
+                                                                  .ourrresponse
+                                                                  .result![i]
+                                                                  .leagueLogo ??
+                                                              "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              const CircularProgressIndicator(),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              const Icon(
+                                                            Icons.error,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            )
+                                              )
                                         ],
                                       ),
                                     );
