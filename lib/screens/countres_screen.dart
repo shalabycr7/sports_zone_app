@@ -104,7 +104,7 @@ class _MySportsState extends State<MySports> {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
-                                            color: Colors.white,
+                                            color: Colors.white60,
                                           ),
                                           child: Column(
                                             mainAxisAlignment:

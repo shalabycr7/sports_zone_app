@@ -51,7 +51,7 @@ class CardCategory extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: Colors.white,
+          color: Colors.white60,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
