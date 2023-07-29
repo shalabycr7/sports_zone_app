@@ -107,7 +107,14 @@ class _MySportsState extends State<MySports> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               CircleAvatar(
-                                                radius: 50,
+                                                radius: ScreenUtil()
+                                                            .orientation ==
+                                                        Orientation.landscape
+                                                    ? ScreenUtil().screenWidth *
+                                                        0.05
+                                                    : ScreenUtil()
+                                                            .screenHeight *
+                                                        0.06,
                                                 child: CircleAvatar(
                                                   backgroundImage: NetworkImage(
                                                       state
@@ -115,7 +122,15 @@ class _MySportsState extends State<MySports> {
                                                               .result![i]
                                                               .countryLogo ??
                                                           'https://th.bing.com/th?id=OIP.SxfHLBiDEPcSBV-ncmz7gQHaJR&w=223&h=279&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2'), //NetworkImage
-                                                  radius: 50,
+                                                  radius: ScreenUtil()
+                                                              .orientation ==
+                                                          Orientation.landscape
+                                                      ? ScreenUtil()
+                                                              .screenWidth *
+                                                          0.05
+                                                      : ScreenUtil()
+                                                              .screenHeight *
+                                                          0.06,
                                                 ), //CircleAvatar
                                               ),
                                               Text(
@@ -123,7 +138,7 @@ class _MySportsState extends State<MySports> {
                                                         .countryName ??
                                                     'Unknown',
                                                 style: GoogleFonts.quicksand(
-                                                  fontSize: 14.sp,
+                                                  fontSize: 13.sp,
                                                   color: Colors.black,
                                                 ),
                                               ),
