@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Sports Zone',
               theme: ThemeData(
-                primaryColor: const Color(0xFF6C63FF),
-                dialogBackgroundColor: const Color.fromARGB(255, 245, 240, 252),
+                primaryColor: const Color.fromARGB(255, 9, 113, 134),
+                dialogBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
               ),
               home: AnimatedSplashScreen(
                   duration: 3000,
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                       ? const HomeScreen()
                       : const OnBoardingScreen(),
                   splashTransition: SplashTransition.fadeTransition,
-                  backgroundColor: const Color.fromARGB(255, 245, 240, 252)));
+                  backgroundColor: const Color.fromARGB(255, 245, 245, 245)));
         },
       ),
     );

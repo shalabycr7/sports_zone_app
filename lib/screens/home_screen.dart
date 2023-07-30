@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              decoration: blueGradient,
+              color: Color.fromARGB(255, 9, 113, 134),
               child: Column(
                 children: [
                   const Padding(
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       child: Container(
                           height: ScreenUtil().screenHeight * 4 / 5,
                           decoration: const BoxDecoration(
-                            color: Color.fromRGBO(246, 241, 248, 1),
+                            color: Color.fromARGB(255, 245, 245, 245),
                             borderRadius: BorderRadius.vertical(
                               top: Radius.circular(25),
                             ),

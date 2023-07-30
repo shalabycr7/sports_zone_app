@@ -27,7 +27,7 @@ class _MySportsState extends State<MySports> {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              decoration: blueGradient,
+              color: Color.fromARGB(255, 9, 113, 134),
               child: Column(
                 children: [
                   const Padding(
@@ -40,7 +40,7 @@ class _MySportsState extends State<MySports> {
                       child: Container(
                           height: ScreenUtil().screenHeight * 4 / 5,
                           decoration: const BoxDecoration(
-                            color: Color.fromRGBO(246, 241, 248, 1),
+                            color: Color.fromARGB(255, 245, 245, 245),
                             borderRadius: BorderRadius.vertical(
                               top: Radius.circular(25),
                             ),
@@ -77,17 +77,17 @@ class _MySportsState extends State<MySports> {
                                             null)
                                           InkWell(
                                             onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LeaguesScreen(
-                                                        loop: state
-                                                            .ourresponse
-                                                            .result![i]
-                                                            .countryKey!),
-                                              ),
-                                            );
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LeaguesScreen(
+                                                          loop: state
+                                                              .ourresponse
+                                                              .result![i]
+                                                              .countryKey!),
+                                                ),
+                                              );
                                             },
                                             child: Container(
                                               padding:
@@ -127,9 +127,11 @@ class _MySportsState extends State<MySports> {
                                                         'Unknown',
                                                     style:
                                                         GoogleFonts.quicksand(
-                                                      fontSize: 13.sp,
-                                                      color: Colors.black,
-                                                    ),
+                                                            fontSize: 13.sp,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                 ],
                                               ),

@@ -8,6 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final TextEditingController search = TextEditingController();
 
+// 40e1d2
+// 1977fb
+// 0c4efa
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   const TeamsScoresScreen({super.key, required this.id});
@@ -47,6 +50,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
   @override
   Widget build(BuildContext context) {
     var screensize = MediaQuery.of(context).size;
+    Color overAllColor = const Color.fromARGB(255, 9, 113, 134);
     return SafeArea(
       child: BlocBuilder<TeamsScoresCubit, TeamsScoresState>(
         builder: (context, state) {
@@ -54,21 +58,21 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
             appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 0,
-              backgroundColor: Colors.white,
+              backgroundColor: overAllColor,
               title: Center(
                   child: Text(
                 "Select The Team",
                 style: GoogleFonts.nunito(
-                    color: Colors.blueGrey,
-                    fontSize: 17.sp,
+                    color: Colors.white,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold),
               )),
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: Container(
-                  color: Colors.white,
+                  color: overAllColor,
                   child: TabBar(
-                    indicatorColor: Colors.blueGrey,
+                    indicatorColor: Colors.white,
                     indicatorSize: TabBarIndicatorSize.label,
                     controller: _tabController,
                     tabs: [
@@ -77,9 +81,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                         "Teams",
                         style: GoogleFonts.nunito(
                           color: (state is TeamsScoresTeams)
-                              ? Colors.blueGrey
-                              : Colors.grey,
-                          fontSize: 16.sp,
+                              ? Colors.white
+                              : const Color.fromARGB(255, 240, 240, 240),
+                          fontSize: 18.sp,
                           fontWeight: (state is TeamsScoresTeams)
                               ? FontWeight.bold
                               : FontWeight.normal,
@@ -90,9 +94,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                         "Top Scorer",
                         style: GoogleFonts.nunito(
                           color: (state is TeamsScoresTopScorers)
-                              ? Colors.blueGrey
-                              : Colors.grey,
-                          fontSize: 16.sp,
+                              ? Colors.white
+                              : const Color.fromARGB(255, 240, 240, 240),
+                          fontSize: 18.sp,
                           fontWeight: (state is TeamsScoresTopScorers)
                               ? FontWeight.bold
                               : FontWeight.normal,
@@ -116,7 +120,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
               ),
             ),
             body: Container(
-              color: Colors.white,
+              color: overAllColor,
               child: Stack(
                 children: [
                   Align(
@@ -127,7 +131,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                             vertical: 15, horizontal: 20),
                         height: ScreenUtil().screenHeight * 0.8,
                         decoration: const BoxDecoration(
-                          color: Color.fromRGBO(246, 241, 248, 1),
+                          color: Color.fromARGB(255, 245, 245, 245),
                           borderRadius: BorderRadius.vertical(
                             top: Radius.circular(25),
                           ),
@@ -144,6 +148,10 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                     child: TextFormField(
                                       controller: search,
                                       decoration: InputDecoration(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                        ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0),
@@ -151,7 +159,8 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                               color: Colors.blueGrey),
                                         ),
                                         filled: true,
-                                        fillColor: Colors.white60,
+                                        fillColor:
+                                            Color.fromARGB(255, 247, 247, 247),
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0),
@@ -232,7 +241,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10.0),
-                                                        color: Colors.white60,
+                                                        color: const Color
+                                                                .fromARGB(
+                                                            255, 245, 245, 245),
                                                       ),
                                                       child: Center(
                                                         child: Column(
@@ -273,13 +284,14 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                                       .result![
                                                                           index]
                                                                       .teamName!,
-                                                                  style: GoogleFonts
-                                                                      .quicksand(
-                                                                    fontSize:
-                                                                        13.sp,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
+                                                                  style: GoogleFonts.quicksand(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500),
                                                                 ),
                                                               ),
                                                             ]),
