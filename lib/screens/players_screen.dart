@@ -79,8 +79,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                   const BorderSide(color: Colors.blueGrey),
                             ),
                             filled: true,
-                            fillColor:  const Color.fromARGB(
-                                            255, 247, 247, 247),
+                            fillColor: const Color.fromARGB(255, 247, 247, 247),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16.0),
                             ),
@@ -492,10 +491,11 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                 children: [
                                                   Text(
                                                     state
-                                                        .ourresponse
-                                                        .result![0]
-                                                        .players![i]
-                                                        .playerName!,
+                                                            .ourresponse
+                                                            .result![0]
+                                                            .players![i]
+                                                            .playerName ??
+                                                        "",
                                                     style: GoogleFonts.nunito(
                                                       fontSize: 18.sp,
                                                       color: Theme.of(context)
@@ -519,10 +519,11 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                       ),
                                                       Text(
                                                         state
-                                                            .ourresponse
-                                                            .result![0]
-                                                            .players![i]
-                                                            .playerType!,
+                                                                .ourresponse
+                                                                .result![0]
+                                                                .players![i]
+                                                                .playerType ??
+                                                            "",
                                                         style:
                                                             GoogleFonts.nunito(
                                                           fontSize: 14.sp,
@@ -541,98 +542,100 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                 return null;
                               }),
                         )
-                      else if (state is PlayersOne && state.ourresponse1.result != null && state.ourresponse1
-                                              .result![0].playerImage != null && state.ourresponse1.result![0]
-                                                  .playerName != null)
-                          Card(
-                            color: Colors.white,
-                            margin: const EdgeInsets.symmetric(vertical: 5),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(25))),
-                            elevation: 0.0,
-                            child: Container(
-                              width: screensize.width * 0.98,
-                              height: screensize.height * (1 / 6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        child: CachedNetworkImage(
-                                          imageUrl: state.ourresponse1
-                                              .result![0].playerImage!,
-                                          errorWidget: (context, url, error) =>
-                                              Image.asset(
-                                                  "assets/images/pngwing.com.png"),
-                                          width: screensize.width * (1 / 4),
-                                          height: screensize.width * (1 / 4),
-                                        ),
+                      else if (state is PlayersOne &&
+                          state.ourresponse1.result != null)
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 15),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.white60,
+                          ),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 9, 113, 134),
+                                radius: ScreenUtil().orientation ==
+                                        Orientation.landscape
+                                    ? ScreenUtil().screenWidth * 0.05
+                                    : ScreenUtil().screenHeight * 0.06,
+                                child: CachedNetworkImage(
+                                  imageUrl: state
+                                      .ourresponse1.result![0].playerImage!,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
                                       ),
-                                      const SizedBox(width: 20),
-                                      Expanded(
-                                        //  // playerName ,  playerType ,playerImage
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              state.ourresponse1.result![0]
-                                                  .playerName!,
-                                              style: GoogleFonts.nunito(
-                                                fontSize: 21,
-                                                color: Colors.blueGrey,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 10),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Team Position: ",
-                                                  style: GoogleFonts.nunito(
-                                                    fontSize: 14.sp,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  state.ourresponse1.result![0]
-                                                          .playerType ??
-                                                      "",
-                                                  style: GoogleFonts.nunito(
-                                                    fontSize: 14.sp,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                  const Spacer(),
-                                ],
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                          "assets/images/pngwing.com.png"),
+                                ),
                               ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      state.ourresponse1.result![0]
+                                              .playerName ??
+                                          "",
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 18.sp,
+                                        color: Theme.of(context).primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(height: 10.h),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Team Position: ",
+                                          style: GoogleFonts.nunito(
+                                            fontSize: 14.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          state.ourresponse1.result![0]
+                                                  .playerType ??
+                                              " ",
+                                          style: GoogleFonts.nunito(
+                                            fontSize: 14.sp,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      else if (searchPlayer.text != "")
+                        Center(
+                          child: Text(
+                            "Not Found",
+                            style: GoogleFonts.nunito(
+                              fontSize: 30.sp,
+                              color: Colors.blueGrey,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3.0,
                             ),
-                          )
-                        // else
-                        //   Center(
-                        //     child: Text(
-                        //       "Not Found",
-                        //       style: GoogleFonts.nunito(
-                        //         fontSize: 30.sp,
-                        //         color: Colors.blueGrey,
-                        //         fontWeight: FontWeight.bold,
-                        //         letterSpacing: 3.0,
-                        //       ),
-                        //     ),
-                        //   )
+                          ),
+                        )
                       else
                         const Center(
                           child: CircularProgressIndicator(),

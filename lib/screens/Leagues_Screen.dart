@@ -38,8 +38,9 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                 color: primaryColor,
                 child: Column(
                   children: [
-                     Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+                    Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 20.h, horizontal: 15.w),
                         child: const TitleRow(
                           title: 'Select the League',
                           textColor: Colors.white,
@@ -87,6 +88,10 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                             .ourrresponse
                                                             .result![i]
                                                             .leagueKey!,
+                                                        name: state
+                                                            .ourrresponse
+                                                            .result![i]
+                                                            .leagueName!,
                                                       ),
                                                     ),
                                                   );
