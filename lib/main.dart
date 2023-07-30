@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
+import 'package:sports_zone/data/cubits/players_status_cubit/players_cubit.dart';
+import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
 
@@ -30,6 +32,13 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LeaguesCubit(),
+        ),
+        BlocProvider<TeamsScoresCubit>(
+          create: (context) => TeamsScoresCubit(),
+        ),
+        // PlayersCubit
+        BlocProvider<PlayersCubit>(
+          create: (context) => PlayersCubit(),
         ),
       ],
       child: ScreenUtilInit(

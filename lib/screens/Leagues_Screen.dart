@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
+import 'package:sports_zone/screens/teams_scores_screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/gradient_decoration.dart';
 
@@ -75,7 +76,15 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                     .countryKey ==
                                                 widget.loop)
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const TeamsScoresScreen(),
+                                                    ),
+                                                  );
+                                                },
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                     borderRadius:
