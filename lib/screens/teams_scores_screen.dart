@@ -322,9 +322,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                     Column(
                                       children: [
                                         Lottie.asset(
-                                          'assets/icons/not_found_animation.json',
-                                          width: 200.w,
-                                        ),
+                                            'assets/icons/not_found_animation.json',
+                                            width: 200.w,
+                                            height: 100.h),
                                         Text(
                                           'Team not found',
                                           style: GoogleFonts.quicksand(
@@ -384,7 +384,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                     '${i + 1}',
                                                     textAlign: TextAlign.center,
                                                     style: GoogleFonts.nunito(
-                                                      fontSize: 15.sp,
+                                                      fontSize: 17.sp,
                                                       color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.bold,

@@ -61,8 +61,10 @@ class MyApp extends StatelessWidget {
               ),
               home: AnimatedSplashScreen(
                   duration: 3000,
-                  splash: SvgPicture.asset(
-                    'assets/images/logo.svg',
+                  splash: Icon(
+                    Icons.sports_basketball,
+                    size: 90,
+                    color: primaryColor,
                   ),
                   nextScreen: alreadySeen
                       ? const HomeScreen()
