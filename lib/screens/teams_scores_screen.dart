@@ -312,216 +312,123 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                   )
                               ],
                             ),
-                            Column(
-                              children: [
-                                if (state is TeamsScoresTopScorers)
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          for (int i = 0;
-                                              i < state.response.result.length;
-                                              i++)
-                                            if (state.response.result[i]
-                                                        .playerName !=
-                                                    null &&
-                                                state.response.result[i]
-                                                        .teamName !=
-                                                    null &&
-                                                state.response.result[i]
-                                                        .goals !=
-                                                    null)
-                                              Card(
-                                                color: Colors.white,
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 20),
-                                                shape:
-                                                    const RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    25))),
-                                                elevation: 0.0,
-                                                child: Container(
-                                                  width: screensize.width * 0.9,
-                                                  height:
-                                                      (screensize.width < 400)
-                                                          ? screensize.height *
-                                                              (1 / 7)
-                                                          : screensize.height *
-                                                              (1 / 3),
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 10),
-                                                  child: Column(
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Container(
-                                                            // Set the background color
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors
-                                                                  .blueGrey, // Set the container background color
-                                                              borderRadius: BorderRadius.circular((screensize
-                                                                          .width <
-                                                                      400)
-                                                                  ? screensize
-                                                                          .width *
-                                                                      (1 / 16)
-                                                                  : screensize
-                                                                          .width *
-                                                                      (1 /
-                                                                          26)), // Set the border radius
-                                                            ),
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .all(
-                                                                    10), // Add some padding
-                                                            width: (screensize
-                                                                        .width <
-                                                                    400)
-                                                                ? screensize
-                                                                        .width *
-                                                                    (1 / 8)
-                                                                : screensize
-                                                                        .width *
-                                                                    (1 / 13),
-                                                            height: (screensize
-                                                                        .width <
-                                                                    400)
-                                                                ? screensize
-                                                                        .width *
-                                                                    (1 / 8)
-                                                                : screensize
-                                                                        .width *
-                                                                    (1 /
-                                                                        13), // Set the width
-                                                            alignment: Alignment
-                                                                .center, // Center the text horizontally
-                                                            child: Text(
-                                                              '${i + 1}',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: GoogleFonts
-                                                                  .nunito(
-                                                                fontSize: 15,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                              width: 20),
-                                                          Expanded(
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  state
-                                                                      .response
-                                                                      .result[i]
-                                                                      .playerName!,
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .nunito(
-                                                                    fontSize:
-                                                                        21.sp,
-                                                                    color: Colors
-                                                                        .blueGrey,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                ),
-                                                                const SizedBox(
-                                                                    height: 10),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "Team Name: ",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      state
-                                                                          .response
-                                                                          .result[
-                                                                              i]
-                                                                          .teamName!,
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "Goals: ",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      "${state.response.result[i].goals!}",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      const Spacer(),
-                                                    ],
+                            if (state is TeamsScoresTopScorers)
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    for (int i = 0;
+                                        i < state.response.result.length;
+                                        i++)
+                                      if (state.response.result[i].playerName !=
+                                              null &&
+                                          state.response.result[i].teamName !=
+                                              null &&
+                                          state.response.result[i].goals !=
+                                              null)
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 15),
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 15),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: Colors.white60,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                backgroundColor: overAllColor,
+                                                radius: 20,
+                                                child: Text(
+                                                  '${i + 1}',
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.nunito(
+                                                    fontSize: 15.sp,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
+                                                ), //Text
+                                              ),
+                                              SizedBox(width: 20.w),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      state.response.result[i]
+                                                          .playerName!,
+                                                      style: GoogleFonts.nunito(
+                                                        fontSize: 18.sp,
+                                                        color: overAllColor,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 10.h),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Team Name: ",
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 14.sp,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          state
+                                                              .response
+                                                              .result[i]
+                                                              .teamName!,
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 14.sp,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Goals: ",
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 14.sp,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "${state.response.result[i].goals!}",
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 14.sp,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
-                                              )
-                                            else
-                                              const Text("shshs"),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                else
-                                  const Center(
-                                    child: CircularProgressIndicator(),
-                                  )
-                              ],
-                            )
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      else
+                                        const Text("shshs"),
+                                  ],
+                                ),
+                              )
+                            else
+                              const Center(
+                                child: CircularProgressIndicator(),
+                              )
                           ],
                         ),
                       ),
