@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
           fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w500),
       bodyTextStyle: bodyStyle,
       bodyPadding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: const Color.fromARGB(255, 245, 245, 245),
+      pageColor:  secondryColor,
       imagePadding: EdgeInsets.zero,
     );
 
@@ -46,7 +47,7 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
       child: Scaffold(
         body: IntroductionScreen(
           key: introKey,
-          globalBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          globalBackgroundColor:  secondryColor,
           allowImplicitScrolling: true,
           autoScrollDuration: 3000,
           infiniteAutoScroll: true,

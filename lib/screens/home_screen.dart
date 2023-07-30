@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sports_zone/global/categories_data.dart';
 import 'package:sports_zone/shared/title_row.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 import 'package:sports_zone/widgets/card_category.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,8 +20,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _saveAlreadySeen();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5));
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    );
   }
 
   @override
@@ -29,72 +33,65 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<void> _saveAlreadySeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('alreadySeen', true);
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = ScreenUtil().screenWidth;
+
     return SafeArea(
       child: Scaffold(
-          body: Container(
-              color: const Color.fromARGB(255, 9, 113, 134),
-              child: Column(
-                children: [
-                  const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: TitleRow(
-                        title: 'Select your favourite sport',
-                        textColor: Colors.white,
-                      )),
-                  Expanded(
-                      child: Container(
-                          height: ScreenUtil().screenHeight * 4 / 5,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 245, 245, 245),
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(25),
-                            ),
+        body: Container(
+          color: primaryColor,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+                child: const TitleRow(
+                  title: 'Select your favourite sport',
+                  textColor: Colors.white,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  height: (4 / 5).sh,
+                  decoration: BoxDecoration(
+                    color: secondryColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(25),
+                    ),
+                  ),
+                  width: screenWidth,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.05,
+                      vertical: screenWidth * 0.04,
+                    ),
+                    child: GridView.count(
+                      crossAxisCount: screenWidth > 600 &&
+                              ScreenUtil().orientation == Orientation.landscape
+                          ? 4
+                          : 2,
+                      crossAxisSpacing: screenWidth * 0.04,
+                      mainAxisSpacing: screenWidth * 0.04,
+                      children: [
+                        for (int i = 0; i < categoriesImages.length; i++)
+                          CardCategory(
+                            images: categoriesImages[i],
+                            sportName: categoriesTitle[i],
+                            brief: categoriesSub[i],
                           ),
-                          width: ScreenUtil().screenWidth,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().screenWidth * 0.05,
-                                vertical: ScreenUtil().screenWidth * 0.04),
-                            child: GridView.count(
-                              crossAxisCount: ScreenUtil().screenWidth > 600 &&
-                                      ScreenUtil().orientation ==
-                                          Orientation.landscape
-                                  ? 4
-                                  : 2,
-                              crossAxisSpacing: ScreenUtil().screenWidth * 0.04,
-                              mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
-                              children: const [
-                                CardCategory(
-                                  images: "assets/images/football_badge.png",
-                                  sportName: "Football",
-                                  brief: "cover all football leagaues",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/tennis_badge.png",
-                                  sportName: "Tennis",
-                                  brief: "cover all tennis championships",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/basketball_badge.png",
-                                  sportName: "Basketball",
-                                  brief: "cover all basketball teams",
-                                ),
-                                CardCategory(
-                                  images: "assets/images/cricket_badge.png",
-                                  sportName: "Cricket",
-                                  brief: "cover all cricket tournaments",
-                                ),
-                              ],
-                            ),
-                          ))),
-                ],
-              ))),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

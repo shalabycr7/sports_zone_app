@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/players_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 final TextEditingController search = TextEditingController();
 
@@ -46,7 +47,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
 
   @override
   Widget build(BuildContext context) {
-    Color overAllColor = const Color.fromARGB(255, 9, 113, 134);
+    Color overAllColor = primaryColor;
     return SafeArea(
       child: BlocBuilder<TeamsScoresCubit, TeamsScoresState>(
         builder: (context, state) {
@@ -61,7 +62,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                 style: GoogleFonts.nunito(
                     color: Colors.white,
                     fontSize: 20.sp,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.w500),
               )),
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -81,7 +82,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                               : const Color.fromARGB(255, 240, 240, 240),
                           fontSize: 18.sp,
                           fontWeight: (state is TeamsScoresTeams)
-                              ? FontWeight.bold
+                              ? FontWeight.w600
                               : FontWeight.normal,
                         ),
                       )),
@@ -94,7 +95,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                               : const Color.fromARGB(255, 240, 240, 240),
                           fontSize: 18.sp,
                           fontWeight: (state is TeamsScoresTopScorers)
-                              ? FontWeight.bold
+                              ? FontWeight.w600
                               : FontWeight.normal,
                         ),
                       )),
@@ -126,9 +127,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 20),
                         height: ScreenUtil().screenHeight * 0.8,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 245, 245, 245),
-                          borderRadius: BorderRadius.vertical(
+                        decoration: BoxDecoration(
+                          color: secondryColor,
+                          borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(25),
                           ),
                         ),
@@ -301,6 +302,10 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                         },
                                       ),
                                     ),
+                                  )
+                                else if (search.text != '')
+                                  const Center(
+                                    child: Text('not found'),
                                   )
                                 else
                                   const Center(

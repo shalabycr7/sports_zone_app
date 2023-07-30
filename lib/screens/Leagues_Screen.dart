@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
 import 'package:sports_zone/screens/teams_scores_screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 int countriesKey = 0;
 
@@ -34,21 +35,21 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
     return SafeArea(
         child: Scaffold(
             body: Container(
-                color: const Color.fromARGB(255, 9, 113, 134),
+                color: primaryColor,
                 child: Column(
                   children: [
-                    const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: TitleRow(
+                     Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+                        child: const TitleRow(
                           title: 'Select the League',
                           textColor: Colors.white,
                         )),
                     Expanded(
                         child: Container(
                             height: ScreenUtil().screenHeight * 4 / 5,
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 245, 245, 245),
-                              borderRadius: BorderRadius.vertical(
+                            decoration: BoxDecoration(
+                              color: secondryColor,
+                              borderRadius: const BorderRadius.vertical(
                                 top: Radius.circular(25),
                               ),
                             ),

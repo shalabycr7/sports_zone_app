@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/screens/leagues_Screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 class MySports extends StatefulWidget {
   const MySports({super.key});
@@ -27,29 +28,31 @@ class _MySportsState extends State<MySports> {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              color: Theme.of(context).primaryColor,
+              color: primaryColor,
               child: Column(
                 children: [
-                  const Padding(
-                      padding: EdgeInsets.all(20),
-                      child: TitleRow(
+                  Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20.h, horizontal: 15.w),
+                      child: const TitleRow(
                         title: 'Select the country',
                         textColor: Colors.white,
                       )),
                   Expanded(
                       child: Container(
                           height: ScreenUtil().screenHeight * 4 / 5,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 245, 245, 245),
-                            borderRadius: BorderRadius.vertical(
+                          decoration:  BoxDecoration(
+                            color: secondryColor,
+                            borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(25),
                             ),
                           ),
                           width: ScreenUtil().screenWidth,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().screenWidth * 0.05,
-                                vertical: ScreenUtil().screenWidth * 0.04),
+                              horizontal: 0.05.sw,
+                              vertical: 0.04.sw,
+                            ),
                             child: BlocBuilder<CountiresCubit, CountiresState>(
                               builder: (context, state) {
                                 if (state is CountiresLoadind) {
