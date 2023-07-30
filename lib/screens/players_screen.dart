@@ -166,38 +166,30 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                     padding: const EdgeInsets
                                                             .symmetric(
                                                         horizontal: 30),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  20)),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: state
-                                                            .ourresponse
-                                                            .result![0]
-                                                            .players![i]
-                                                            .playerImage!,
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Image.asset(
-                                                                "assets/images/pngwing.com.png"),
-                                                        width: (screensize
-                                                                    .width <
-                                                                400)
-                                                            ? screensize.width *
-                                                                (1 / 4)
-                                                            : screensize.width *
-                                                                (1 / 5),
-                                                        height: (screensize
-                                                                    .width <
-                                                                400)
-                                                            ? screensize.width *
-                                                                (1 / 2)
-                                                            : screensize.width *
-                                                                (1 / 5),
-                                                        fit: BoxFit.cover,
-                                                      ),
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: state
+                                                          .ourresponse
+                                                          .result![0]
+                                                          .players![i]
+                                                          .playerImage!,
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.asset(
+                                                              "assets/images/pngwing.com.png"),
+                                                      width: (screensize.width <
+                                                              400)
+                                                          ? screensize.width *
+                                                              (1 / 4)
+                                                          : screensize.width *
+                                                              (1 / 5),
+                                                      height: (screensize
+                                                                  .width <
+                                                              400)
+                                                          ? screensize.width *
+                                                              (1 / 2)
+                                                          : screensize.width *
+                                                              (1 / 5),
+                                                      fit: BoxFit.cover,
                                                     ),
                                                   ),
                                                   content: Column(
@@ -237,8 +229,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerNumber ??
@@ -261,12 +253,12 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerCountry ??
-                                                                    "",
+                                                                    "Unknown",
                                                                 style: style,
                                                               )
                                                             ],
@@ -285,8 +277,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerType ??
@@ -309,8 +301,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerAge ??
@@ -333,8 +325,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerYellowCards ??
@@ -357,8 +349,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerRedCards ??
@@ -381,8 +373,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               Text(
                                                                 state
                                                                         .ourresponse
-                                                                        .result![widget
-                                                                            .in1]
+                                                                        .result![
+                                                                            0]
                                                                         .players![
                                                                             i]
                                                                         .playerGoals ??
@@ -438,9 +430,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                         elevation: 0.0,
                                         child: Container(
                                           width: screensize.width * 0.5,
-                                          height: (screensize.width < 400)
-                                              ? screensize.height * (1 / 6)
-                                              : screensize.height * 0.4,
+                                          height: screensize.height * 1 / 6,
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 20, vertical: 10),
                                           child: Column(
@@ -461,19 +451,10 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                               url, error) =>
                                                           Image.asset(
                                                               "assets/images/pngwing.com.png"),
-                                                      width: (screensize.width <
-                                                              400)
-                                                          ? screensize.width *
-                                                              (1 / 4)
-                                                          : screensize.width *
-                                                              (1 / 7),
-                                                      height: (screensize
-                                                                  .width <
-                                                              400)
-                                                          ? screensize.width *
-                                                              (1 / 4)
-                                                          : screensize.height *
-                                                              (1 / 4),
+                                                      width: screensize.width *
+                                                          0.25,
+                                                      height: screensize.width *
+                                                          0.25,
                                                     ),
                                                   ),
                                                   const SizedBox(width: 20),
