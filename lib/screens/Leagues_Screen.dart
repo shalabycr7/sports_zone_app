@@ -42,6 +42,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                         padding: EdgeInsets.all(20),
                         child: TitleRow(
                           title: 'Select the League',
+                          textColor: Colors.white,
                         )),
                     Expanded(
                         child: Container(

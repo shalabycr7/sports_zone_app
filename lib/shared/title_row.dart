@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TitleRow extends StatelessWidget {
   final String title;
-  const TitleRow({super.key, required this.title});
+  final Color textColor;
+  const TitleRow({super.key, required this.title, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +16,14 @@ class TitleRow extends StatelessWidget {
           title,
           style: GoogleFonts.quicksand(
             fontSize: 17.sp,
-            color: Colors.white,
+            color: textColor,
             fontWeight: FontWeight.w500,
           ),
         ),
         SizedBox(
           width: 10.w,
         ),
-        Icon(Icons.arrow_circle_right_outlined,
-            color: Colors.white, size: 20.sp)
+        Icon(Icons.arrow_circle_right_outlined, color: textColor, size: 20.sp)
       ],
     );
   }

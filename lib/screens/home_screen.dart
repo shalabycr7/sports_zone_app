@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       padding: EdgeInsets.all(20),
                       child: TitleRow(
                         title: 'Select your favourite sport',
+                        textColor: Colors.white,
                       )),
                   Expanded(
                       child: Container(

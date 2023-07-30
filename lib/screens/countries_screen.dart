@@ -34,6 +34,7 @@ class _MySportsState extends State<MySports> {
                       padding: EdgeInsets.all(20),
                       child: TitleRow(
                         title: 'Select the country',
+                        textColor: Colors.white,
                       )),
                   Expanded(
                       child: Container(
