@@ -41,7 +41,6 @@ class _PlayersScreenState extends State<PlayersScreen>
   void dispose() {
     _animationController.dispose();
     searchPlayer.clear();
-    search.clear();
 
     super.dispose();
   }
