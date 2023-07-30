@@ -23,6 +23,9 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_screenutil: ^5.8.4
   lottie: ^2.5.0
+  firebase_core: ^2.15.0
+  firebase_messaging: ^14.6.5
+  flutter_local_notifications: ^15.1.0+1
 
 dev_dependencies:
   flutter_test:

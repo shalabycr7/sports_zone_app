@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,11 +9,15 @@ import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
 import 'package:sports_zone/data/cubits/players_status_cubit/players_cubit.dart';
 import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
+import 'package:sports_zone/data/firebase_api.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FireBaseApi().intitNot();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool alreadySeen = prefs.getBool('alreadySeen') ?? false;

@@ -30,7 +30,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabChange);
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _animationController.forward();

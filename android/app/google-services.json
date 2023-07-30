@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481096423229",
+    "project_id": "sports-zone-68c23",
+    "storage_bucket": "sports-zone-68c23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481096423229:android:a97900788896a94c2ad754",
+        "android_client_info": {
+          "package_name": "com.shalabydev.sports_zone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481096423229-ethaj21ef90j8qod7u93enb5m5m1j2d7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1_8KiLy5U62b38e63eMIIqfvXvCMVm8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481096423229-ethaj21ef90j8qod7u93enb5m5m1j2d7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
