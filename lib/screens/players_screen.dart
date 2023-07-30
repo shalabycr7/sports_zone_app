@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/players_status_cubit/players_cubit.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
@@ -34,9 +35,11 @@ class _PlayersScreenState extends State<PlayersScreen>
     _animationController.forward();
     context.read<PlayersCubit>().getPlayer(widget.tmname, widget.id);
   }
-   @override
+
+  @override
   void dispose() {
     _animationController.dispose();
+    searchPlayer.clear();
     super.dispose();
   }
 
@@ -637,16 +640,21 @@ class _PlayersScreenState extends State<PlayersScreen>
                             ),
                           )
                         else if (searchPlayer.text != "")
-                          Center(
-                            child: Text(
-                              "Not Found",
-                              style: GoogleFonts.nunito(
-                                fontSize: 30.sp,
-                                color: Colors.blueGrey,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 3.0,
+                          Column(
+                            children: [
+                              Lottie.asset(
+                                'assets/icons/not_found_animation.json',
+                                width: 200.w,
                               ),
-                            ),
+                              Text(
+                                'Player not found',
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 16.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           )
                         else
                           const Center(

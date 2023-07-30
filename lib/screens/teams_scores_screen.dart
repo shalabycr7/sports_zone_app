@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/players_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,9 +42,9 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
   void dispose() {
     _tabController.dispose();
     _animationController.dispose();
+    search.clear();
     super.dispose();
   }
-
 
   void _handleTabChange() {
     if (_tabController.index == 0) {
@@ -318,10 +319,21 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                       ),
                                     )
                                   else if (search.text != '')
-                                    const Center(
-                                      child: Text(
-                                        'not found',
-                                      ),
+                                    Column(
+                                      children: [
+                                        Lottie.asset(
+                                          'assets/icons/not_found_animation.json',
+                                          width: 200.w,
+                                        ),
+                                        Text(
+                                          'Team not found',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 16.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
                                     )
                                   else
                                     const Center(
