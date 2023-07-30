@@ -81,7 +81,12 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const TeamsScoresScreen(),
+                                                          TeamsScoresScreen(
+                                                        id: state
+                                                            .ourrresponse
+                                                            .result![i]
+                                                            .leagueKey!,
+                                                      ),
                                                     ),
                                                   );
                                                 },

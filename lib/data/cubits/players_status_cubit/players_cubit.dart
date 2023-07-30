@@ -10,13 +10,13 @@ part 'players_state.dart';
 class PlayersCubit extends Cubit<PlayersState> {
   PlayersCubit() : super(PlayersInitial());
 
-  getPlayer(String tm) {
-    Players().getPlayers(tm).then((value) {
+  getPlayer(String tm,id) {
+    Players().getPlayers(tm,id).then((value) {
       if (value != null) emit(PlayersAll(ourresponse: value));
     });
   }
 
-  getPlayer1(String srch) {
+  getPlayer1(String srch,) {
     Players().getPlayer(srch).then((value) {
       if (value != null) emit(PlayersOne(ourresponse1: value));
     });

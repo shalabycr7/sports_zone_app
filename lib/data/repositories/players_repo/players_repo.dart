@@ -6,7 +6,7 @@ import '../../models/plyer1_model/plyer1_model.dart';
 import '../../models/tems_model/tems_model.dart';
 
 class Players {
-  Future<TemsModel?> getPlayers(String tm) async {
+  Future<TemsModel?> getPlayers(String tm,int id) async {
     try {
       http.Response response;
       // https://apiv2.allsportsapi.com/football/?&playerName=Cristiano Ronaldo&met=Players&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252
@@ -17,7 +17,7 @@ class Players {
       //  response = await http.get(Uri.parse("https://apiv2.allsportsapi.com/football/?&playerName=$srch&met=Players&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252"));
 
       response = await http.get(Uri.parse(
-          "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=205"));
+          "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=$id&teamName=$tm"));
       Map<String, dynamic> decodedresponse = json.decode(response.body);
       if (response.statusCode == 200) {
         TemsModel data = TemsModel.fromJson(decodedresponse);
@@ -56,6 +56,4 @@ class Players {
       return null;
     }
   }
-
-  
 }

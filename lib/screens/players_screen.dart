@@ -11,7 +11,9 @@ final TextEditingController Search_player = TextEditingController();
 class Players_Screen extends StatefulWidget {
   final int in1;
   final String tmname;
-  const Players_Screen({super.key, required this.in1, required this.tmname});
+  final int id;
+  const Players_Screen(
+      {super.key, required this.in1, required this.tmname, required this.id});
 
   @override
   State<Players_Screen> createState() => _Players_ScreenState();
@@ -27,7 +29,7 @@ class _Players_ScreenState extends State<Players_Screen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<PlayersCubit>().getPlayer(widget.tmname);
+    context.read<PlayersCubit>().getPlayer(widget.tmname, widget.id);
   }
 
   @override
@@ -87,8 +89,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
-                         width: screensize.width * .8,
-                                      height: screensize.height * .05,
+                            width: screensize.width * .8,
+                            height: screensize.height * .05,
                             child: TextFormField(
                               controller: Search_player,
                               decoration: InputDecoration(
@@ -107,11 +109,13 @@ class _Players_ScreenState extends State<Players_Screen> {
                                 labelStyle: GoogleFonts.nunito(
                                   fontSize: 12.sp,
                                   //fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 197, 194, 194),
+                                  color:
+                                      const Color.fromARGB(255, 197, 194, 194),
                                 ),
                                 suffixIcon: IconButton(
                                   icon: const Icon(Icons.search),
-                                  color: const Color.fromARGB(255, 197, 194, 194),
+                                  color:
+                                      const Color.fromARGB(255, 197, 194, 194),
                                   iconSize: 18.sp,
                                   onPressed: () {
                                     if (Search_player.text != "") {
@@ -121,7 +125,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                     } else {
                                       context
                                           .read<PlayersCubit>()
-                                          .getPlayer(widget.tmname);
+                                          .getPlayer(widget.tmname, widget.id);
                                     }
                                   },
                                 ),
@@ -130,21 +134,20 @@ class _Players_ScreenState extends State<Players_Screen> {
                           ),
                         ),
                         if (state is PlayersAll &&
-                            state.ourresponse.result![widget.in1].players !=
-                                null)
+                            state.ourresponse.result![0].players != null)
                           Expanded(
                             child: ListView.builder(
-                                itemCount: state.ourresponse.result![widget.in1]
-                                    .players!.length,
+                                itemCount: state
+                                    .ourresponse.result![0].players!.length,
                                 itemBuilder: (BuildContext context, int i) {
-                                  if (state.ourresponse.result![widget.in1]
-                                              .players![i].playerImage !=
+                                  if (state.ourresponse.result![0].players![i]
+                                              .playerImage !=
                                           null &&
-                                      state.ourresponse.result![widget.in1]
-                                              .players![i].playerName !=
+                                      state.ourresponse.result![0].players![i]
+                                              .playerName !=
                                           null &&
-                                      state.ourresponse.result![widget.in1]
-                                              .players![i].playerType !=
+                                      state.ourresponse.result![0].players![i]
+                                              .playerType !=
                                           null) {
                                     return InkWell(
                                       onTap: () {
@@ -160,18 +163,19 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                   ),
                                                   backgroundColor: Colors.white,
                                                   title: Padding(
-                                                    padding:
-                                                        const EdgeInsets.symmetric(
-                                                            horizontal: 30),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 30),
                                                     child: ClipRRect(
                                                       borderRadius:
-                                                          const BorderRadius.all(
+                                                          const BorderRadius
+                                                                  .all(
                                                               Radius.circular(
                                                                   20)),
                                                       child: CachedNetworkImage(
                                                         imageUrl: state
                                                             .ourresponse
-                                                            .result![widget.in1]
+                                                            .result![0]
                                                             .players![i]
                                                             .playerImage!,
                                                         errorWidget: (context,
@@ -208,8 +212,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                           child: Text(
                                                             state
                                                                 .ourresponse
-                                                                .result![
-                                                                    widget.in1]
+                                                                .result![0]
                                                                 .players![i]
                                                                 .playerName!,
                                                             style: GoogleFonts
@@ -400,7 +403,8 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                                       .blueGrey),
                                                           minimumSize:
                                                               MaterialStateProperty
-                                                                  .all(const Size(120,
+                                                                  .all(const Size(
+                                                                      120,
                                                                       40)), // Adjust the width and height as needed
                                                         ),
                                                         onPressed: () {
@@ -450,7 +454,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                     child: CachedNetworkImage(
                                                       imageUrl: state
                                                           .ourresponse
-                                                          .result![widget.in1]
+                                                          .result![0]
                                                           .players![i]
                                                           .playerImage!,
                                                       errorWidget: (context,
@@ -483,8 +487,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                         Text(
                                                           state
                                                               .ourresponse
-                                                              .result![
-                                                                  widget.in1]
+                                                              .result![0]
                                                               .players![i]
                                                               .playerName!,
                                                           style: GoogleFonts
@@ -515,9 +518,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                             Text(
                                                               state
                                                                   .ourresponse
-                                                                  .result![
-                                                                      widget
-                                                                          .in1]
+                                                                  .result![0]
                                                                   .players![i]
                                                                   .playerType!,
                                                               style: GoogleFonts
@@ -540,7 +541,7 @@ class _Players_ScreenState extends State<Players_Screen> {
                                         ),
                                       ),
                                     );
-                                  return null;
+                                    return null;
                                   }
                                   return null;
                                 }),

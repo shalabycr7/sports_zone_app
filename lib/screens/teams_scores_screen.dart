@@ -10,7 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 final TextEditingController Search = TextEditingController();
 
 class TeamsScoresScreen extends StatefulWidget {
-  const TeamsScoresScreen({super.key});
+  final int id;
+  const TeamsScoresScreen({super.key, required this.id});
 
   @override
   State<TeamsScoresScreen> createState() => _TeamsScoresScreen();
@@ -34,7 +35,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabChange);
     super.initState();
-    context.read<TeamsScoresCubit>().getTeam();
+    context.read<TeamsScoresCubit>().getTeam(widget.id);
   }
 
   @override
@@ -45,12 +46,12 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
 
   void _handleTabChange() {
     if (_tabController.index == 0) {
-      context.read<TeamsScoresCubit>().getTeam();
+      context.read<TeamsScoresCubit>().getTeam(widget.id);
       // Handle home tab press action
     } else if (_tabController.index == 1) {
       // Perform action for the second tab
       Search.text = "";
-      context.read<TeamsScoresCubit>().getTopScorers();
+      context.read<TeamsScoresCubit>().getTopScorers(widget.id);
     }
   }
 
@@ -107,12 +108,12 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                     ],
                     onTap: (index) {
                       if (index == 0) {
-                        context.read<TeamsScoresCubit>().getTeam();
+                        context.read<TeamsScoresCubit>().getTeam(widget.id);
                         // Handle home tab press action
                       } else if (index == 1) {
                         // Handle settings tab press action
                         Search.text = "";
-                        context.read<TeamsScoresCubit>().getTopScorers();
+                        context.read<TeamsScoresCubit>().getTopScorers(widget.id);
                       }
                     },
                   ),
@@ -201,11 +202,11 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                 if (Search.text != "") {
                                                   context
                                                       .read<TeamsScoresCubit>()
-                                                      .getTeam();
+                                                      .getTeam(widget.id);
                                                 } else {
                                                   context
                                                       .read<TeamsScoresCubit>()
-                                                      .getTeam();
+                                                      .getTeam(widget.id);
                                                 }
                                               },
                                             ),
@@ -213,106 +214,122 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                         ),
                                       ),
                                     ),
-                                  if (state is TeamsScoresTeams)
+                                  if (state is TeamsScoresTeams &&
+                                      state.ourresponse.result != null)
                                     Expanded(
                                       child: GridView.count(
                                         crossAxisCount:
-                                            (screensize.width < 400) ? 2 : 4,
-                                        crossAxisSpacing: 4.0,
-                                        mainAxisSpacing: 8.0,
+                                            ScreenUtil().screenWidth > 600 &&
+                                                    ScreenUtil().orientation ==
+                                                        Orientation.landscape
+                                                ? 4
+                                                : 2,
+                                        crossAxisSpacing:
+                                            ScreenUtil().screenWidth * 0.04,
+                                        mainAxisSpacing:
+                                            ScreenUtil().screenWidth * 0.04,
                                         children: List.generate(
                                           state.ourresponse.result!.length,
                                           (index) {
-                                            return Center(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(2.0),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    print(index);
-                                                    Search_player.text = "";
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Players_Screen(
-                                                          in1: index,
-                                                          tmname: state
-                                                              .ourresponse
-                                                              .result![index]
-                                                              .teamName!,
+                                            if (state.ourresponse.result![index]
+                                                        .teamName !=
+                                                    null &&
+                                                state.ourresponse.result![index]
+                                                        .teamLogo !=
+                                                    null) {
+                                              return Center(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2.0),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      print(index);
+                                                      Search_player.text = "";
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Players_Screen(
+                                                            in1: index,
+                                                            tmname: state
+                                                                .ourresponse
+                                                                .result![index]
+                                                                .teamName!,
+                                                                id: widget.id,
+                                                          ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: BlurryContainer(
-                                                      blur: 8,
-                                                      color: Colors.white,
-                                                      /*  shape: RoundedRectangleBorder(
+                                                      );
+                                                    },
+                                                    child: BlurryContainer(
+                                                        blur: 8,
+                                                        color: Colors.white,
+                                                        /*  shape: RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10), // Set the desired border radius value
                                                     ),*/
-                                                      // Color.fromRGBO(246, 241, 248, 1)
+                                                        // Color.fromRGBO(246, 241, 248, 1)
 
-                                                      child: Center(
-                                                        child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Expanded(
+                                                        child: Center(
+                                                          child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Expanded(
+                                                                    child:
+                                                                        Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          3.0),
                                                                   child:
-                                                                      Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        3.0),
-                                                                child:
-                                                                    CachedNetworkImage(
-                                                                  imageUrl: state
-                                                                      .ourresponse
-                                                                      .result![
-                                                                          index]
-                                                                      .teamLogo!,
-                                                                  errorWidget: (context,
-                                                                          url,
-                                                                          error) =>
-                                                                      Image.asset(
-                                                                          "assets/images/pngwing.com.png"),
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              )),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        3.0),
-                                                                child: Text(
-                                                                  state
-                                                                      .ourresponse
-                                                                      .result![
-                                                                          index]
-                                                                      .teamName!,
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .nunito(
-                                                                    fontSize:
-                                                                        15,
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                      CachedNetworkImage(
+                                                                    imageUrl: state
+                                                                        .ourresponse
+                                                                        .result![
+                                                                            index]
+                                                                        .teamLogo!,
+                                                                    errorWidget: (context,
+                                                                            url,
+                                                                            error) =>
+                                                                        Image.asset(
+                                                                            "assets/images/pngwing.com.png"),
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                )),
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          3.0),
+                                                                  child: Text(
+                                                                    state
+                                                                        .ourresponse
+                                                                        .result![
+                                                                            index]
+                                                                        .teamName!,
+                                                                    style: GoogleFonts
+                                                                        .nunito(
+                                                                      fontSize:
+                                                                          15,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ]),
-                                                      )),
+                                                              ]),
+                                                        )),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
+                                              );
+                                            } else {
+                                              return Text('data');
+                                            }
                                           },
                                         ),
                                       ),
