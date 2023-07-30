@@ -15,7 +15,7 @@ class TeamsScoresCubit extends Cubit<TeamsScoresState> {
 
   getTeam() {
     // emit(AllNewsCubitLoading());
-    Teams_Scorer().getTeams(Search.text).then((value) {
+    Teams_Scorer().getTeams(search.text).then((value) {
       if (value != null) emit(TeamsScoresTeams(ourresponse: value));
     });
   }
