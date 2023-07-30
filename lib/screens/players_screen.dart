@@ -163,35 +163,45 @@ class _Players_ScreenState extends State<Players_Screen> {
                                                   ),
                                                   backgroundColor: Colors.white,
                                                   title: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 30),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: state
-                                                          .ourresponse
-                                                          .result![0]
-                                                          .players![i]
-                                                          .playerImage!,
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Image.asset(
-                                                              "assets/images/pngwing.com.png"),
-                                                      width: (screensize.width <
-                                                              400)
-                                                          ? screensize.width *
-                                                              (1 / 4)
-                                                          : screensize.width *
-                                                              (1 / 5),
-                                                      height: (screensize
-                                                                  .width <
-                                                              400)
-                                                          ? screensize.width *
-                                                              (1 / 2)
-                                                          : screensize.width *
-                                                              (1 / 5),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 30),
+                                                      child: CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.grey,
+                                                        radius: 75,
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl: state
+                                                              .ourresponse
+                                                              .result![0]
+                                                              .players![i]
+                                                              .playerImage!,
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              image:
+                                                                  DecorationImage(
+                                                                image:
+                                                                    imageProvider,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              CircularProgressIndicator(),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Image.asset(
+                                                                  "assets/images/pngwing.com.png"),
+                                                        ),
+                                                      )),
                                                   content: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
