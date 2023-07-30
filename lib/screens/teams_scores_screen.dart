@@ -8,9 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final TextEditingController search = TextEditingController();
 
-// 40e1d2
-// 1977fb
-// 0c4efa
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   const TeamsScoresScreen({super.key, required this.id});
@@ -219,12 +216,12 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                     const EdgeInsets.all(5.0),
                                                 child: InkWell(
                                                   onTap: () {
-                                                    Search_player.text = "";
+                                                    searchPlayer.text = "";
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            Players_Screen(
+                                                            PlayersScreen(
                                                           in1: index,
                                                           tmname: state
                                                               .ourresponse

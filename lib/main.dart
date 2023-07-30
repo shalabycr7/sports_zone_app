@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
         BlocProvider<TeamsScoresCubit>(
           create: (context) => TeamsScoresCubit(),
         ),
-        // PlayersCubit
         BlocProvider<PlayersCubit>(
           create: (context) => PlayersCubit(),
         ),

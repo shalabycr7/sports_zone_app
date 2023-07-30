@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/screens/leagues_Screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
-import 'package:sports_zone/styles/gradient_decoration.dart';
 
 class MySports extends StatefulWidget {
   const MySports({super.key});
@@ -28,7 +27,7 @@ class _MySportsState extends State<MySports> {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              color: Color.fromARGB(255, 9, 113, 134),
+              color: Theme.of(context).primaryColor,
               child: Column(
                 children: [
                   const Padding(
