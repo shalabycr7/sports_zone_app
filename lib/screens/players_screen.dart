@@ -212,7 +212,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Player Number: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -223,7 +223,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerNumber ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -236,7 +236,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Player Country: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -247,7 +247,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerCountry ??
                                                                       "Unknown",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -260,7 +260,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Player Position: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -271,7 +271,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerType ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -284,7 +284,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Player Age: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -295,7 +295,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerAge ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -308,7 +308,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Yellow Cards num: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -319,7 +319,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerYellowCards ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -332,7 +332,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "Red Cards num: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -343,7 +343,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerRedCards ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -356,7 +356,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                               children: [
                                                                 Text(
                                                                   "player goals: ",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 ),
                                                                 Text(
                                                                   state
@@ -367,7 +367,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                                               i]
                                                                           .playerGoals ??
                                                                       "",
-                                                                  style: style,
+                                                                  style: nunitoStyle,
                                                                 )
                                                               ],
                                                             ),
@@ -375,7 +375,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                                         ]),
                                                     actions: [
                                                       Center(
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           width:
                                                               screensize.width *
                                                                   0.3,
@@ -521,7 +521,6 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                           ],
                                         ),
                                       ));
-                                  return null;
                                 }
                                 return null;
                               }),

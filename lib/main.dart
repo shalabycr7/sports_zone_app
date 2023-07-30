@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_zone/data/cubits/countries_cubit/countires_cubit.dart';
 import 'package:sports_zone/data/cubits/leagues_cubit/leagues_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:sports_zone/data/cubits/players_status_cubit/players_cubit.dart'
 import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,21 +51,19 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Sports Zone',
               theme: ThemeData(
-                primaryColor: const Color.fromARGB(255, 9, 113, 134),
-                dialogBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
+                primaryColor: primaryColor,
+                dialogBackgroundColor: secondryColor,
               ),
               home: AnimatedSplashScreen(
                   duration: 3000,
-                  splash: Icon(
-                    Icons.sports_basketball,
-                    size: 90,
-                    color: Theme.of(context).primaryColor,
+                  splash: SvgPicture.asset(
+                    'assets/images/logo.svg',
                   ),
                   nextScreen: alreadySeen
                       ? const HomeScreen()
                       : const OnBoardingScreen(),
                   splashTransition: SplashTransition.fadeTransition,
-                  backgroundColor: const Color.fromARGB(255, 245, 245, 245)));
+                  backgroundColor: secondryColor));
         },
       ),
     );

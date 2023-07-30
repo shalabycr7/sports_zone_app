@@ -23,7 +23,6 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_screenutil: ^5.8.4
   lottie: ^2.5.0
-  blurrycontainer: ^1.0.2
 
 dev_dependencies:
   flutter_test:

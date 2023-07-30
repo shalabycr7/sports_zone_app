@@ -296,7 +296,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                               ),
                                             );
                                           } else {
-                                            return Text('data');
+                                            return const Text('data');
                                           }
                                         },
                                       ),

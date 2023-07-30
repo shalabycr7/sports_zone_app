@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_zone/shared/title_row.dart';
-import 'package:sports_zone/styles/gradient_decoration.dart';
 import 'package:sports_zone/widgets/card_category.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return SafeArea(
       child: Scaffold(
           body: Container(
-              color: Color.fromARGB(255, 9, 113, 134),
+              color: const Color.fromARGB(255, 9, 113, 134),
               child: Column(
                 children: [
                   const Padding(
