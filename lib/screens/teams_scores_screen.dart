@@ -1,4 +1,3 @@
-import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -298,184 +297,170 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                 state.response.result[i]
                                                         .goals !=
                                                     null)
-                                              Card(
-                                                color: const Color.fromARGB(
-                                                    255, 214, 23, 23),
-                                                margin:
+                                              Container(
+                                                color: Colors.red,
+                                                width: screensize.width * 0.9,
+                                                height: (screensize.width < 400)
+                                                    ? screensize.height *
+                                                        (1 / 7)
+                                                    : screensize.height *
+                                                        (1 / 3),
+                                                padding:
                                                     const EdgeInsets.symmetric(
-                                                        vertical: 20),
-                                                shape:
-                                                    const RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    25))),
-                                                elevation: 0.0,
-                                                child: Container(
-                                                  width: screensize.width * 0.9,
-                                                  height:
-                                                      (screensize.width < 400)
-                                                          ? screensize.height *
-                                                              (1 / 7)
-                                                          : screensize.height *
-                                                              (1 / 3),
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 10),
-                                                  child: Column(
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Container(
-                                                            // Set the background color
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Colors
-                                                                  .blueGrey, // Set the container background color
-                                                              borderRadius: BorderRadius.circular((screensize
-                                                                          .width <
-                                                                      400)
-                                                                  ? screensize
-                                                                          .width *
-                                                                      (1 / 16)
-                                                                  : screensize
-                                                                          .width *
-                                                                      (1 /
-                                                                          26)), // Set the border radius
-                                                            ),
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .all(
-                                                                    10), // Add some padding
-                                                            width: (screensize
+                                                        horizontal: 20,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          // Set the background color
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors
+                                                                .blueGrey, // Set the container background color
+                                                            borderRadius: BorderRadius.circular((screensize
                                                                         .width <
                                                                     400)
                                                                 ? screensize
                                                                         .width *
-                                                                    (1 / 8)
-                                                                : screensize
-                                                                        .width *
-                                                                    (1 / 13),
-                                                            height: (screensize
-                                                                        .width <
-                                                                    400)
-                                                                ? screensize
-                                                                        .width *
-                                                                    (1 / 8)
+                                                                    (1 / 16)
                                                                 : screensize
                                                                         .width *
                                                                     (1 /
-                                                                        13), // Set the width
-                                                            alignment: Alignment
-                                                                .center, // Center the text horizontally
-                                                            child: Text(
-                                                              '${i + 1}',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: GoogleFonts
-                                                                  .nunito(
-                                                                fontSize: 15,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                        26)), // Set the border radius
+                                                          ),
+                                                          padding: const EdgeInsets
+                                                                  .all(
+                                                              10), // Add some padding
+                                                          width: (screensize
+                                                                      .width <
+                                                                  400)
+                                                              ? screensize
+                                                                      .width *
+                                                                  (1 / 8)
+                                                              : screensize
+                                                                      .width *
+                                                                  (1 / 13),
+                                                          height: (screensize
+                                                                      .width <
+                                                                  400)
+                                                              ? screensize
+                                                                      .width *
+                                                                  (1 / 8)
+                                                              : screensize
+                                                                      .width *
+                                                                  (1 /
+                                                                      13), // Set the width
+                                                          alignment: Alignment
+                                                              .center, // Center the text horizontally
+                                                          child: Text(
+                                                            '${i + 1}',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              fontSize: 15,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                            width: 20),
+                                                        Expanded(
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                state
+                                                                    .response
+                                                                    .result[i]
+                                                                    .playerName!,
+                                                                style:
+                                                                    GoogleFonts
+                                                                        .nunito(
+                                                                  fontSize:
+                                                                      21.sp,
+                                                                  color: Colors
+                                                                      .blueGrey,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                              width: 20),
-                                                          Expanded(
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  state
-                                                                      .response
-                                                                      .result[i]
-                                                                      .playerName!,
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .nunito(
-                                                                    fontSize:
-                                                                        21.sp,
-                                                                    color: Colors
-                                                                        .blueGrey,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                              const SizedBox(
+                                                                  height: 10),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "Team Name: ",
+                                                                    style: GoogleFonts
+                                                                        .nunito(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                                const SizedBox(
-                                                                    height: 10),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "Team Name: ",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
+                                                                  Text(
+                                                                    state
+                                                                        .response
+                                                                        .result[
+                                                                            i]
+                                                                        .teamName!,
+                                                                    style: GoogleFonts
+                                                                        .nunito(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .black,
                                                                     ),
-                                                                    Text(
-                                                                      state
-                                                                          .response
-                                                                          .result[
-                                                                              i]
-                                                                          .teamName!,
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "Goals: ",
+                                                                    style: GoogleFonts
+                                                                        .nunito(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
                                                                     ),
-                                                                  ],
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Text(
-                                                                      "Goals: ",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
+                                                                  ),
+                                                                  Text(
+                                                                    "${state.response.result[i].goals!}",
+                                                                    style: GoogleFonts
+                                                                        .nunito(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .black,
                                                                     ),
-                                                                    Text(
-                                                                      "${state.response.result[i].goals!}",
-                                                                      style: GoogleFonts
-                                                                          .nunito(
-                                                                        fontSize:
-                                                                            14.sp,
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ],
-                                                      ),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Spacer(),
+                                                  ],
                                                 ),
                                               )
                                             else
