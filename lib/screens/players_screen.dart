@@ -34,6 +34,11 @@ class _PlayersScreenState extends State<PlayersScreen>
     _animationController.forward();
     context.read<PlayersCubit>().getPlayer(widget.tmname, widget.id);
   }
+   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

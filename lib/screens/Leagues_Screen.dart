@@ -20,14 +20,15 @@ class LeaguesScreen extends StatefulWidget {
   State<LeaguesScreen> createState() => _LeaguesScreenState();
 }
 
-class _LeaguesScreenState extends State<LeaguesScreen> with TickerProviderStateMixin {
+class _LeaguesScreenState extends State<LeaguesScreen>
+    with TickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
-     _controller = AnimationController(
+    _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
@@ -35,6 +36,12 @@ class _LeaguesScreenState extends State<LeaguesScreen> with TickerProviderStateM
         .animate(_controller);
     _controller.forward();
     context.read<LeaguesCubit>().getLeagues();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -117,7 +124,8 @@ class _LeaguesScreenState extends State<LeaguesScreen> with TickerProviderStateM
                                                         horizontal: 10,
                                                         vertical: 5),
                                                     margin: const EdgeInsets
-                                                        .symmetric(vertical: 10),
+                                                            .symmetric(
+                                                        vertical: 10),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
@@ -154,9 +162,10 @@ class _LeaguesScreenState extends State<LeaguesScreen> with TickerProviderStateM
                                                             placeholder: (context,
                                                                     url) =>
                                                                 const CircularProgressIndicator(),
-                                                            errorWidget: (context,
-                                                                    url, error) =>
-                                                                const Icon(
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    const Icon(
                                                               Icons.error,
                                                             ),
                                                           ),

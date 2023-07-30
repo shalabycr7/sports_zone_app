@@ -40,8 +40,10 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
   @override
   void dispose() {
     _tabController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
+
 
   void _handleTabChange() {
     if (_tabController.index == 0) {
