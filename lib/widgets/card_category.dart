@@ -68,7 +68,7 @@ class CardCategory extends StatelessWidget {
               sportName,
               style: GoogleFonts.quicksand(
                 fontSize: 16.sp,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w500,
               ),
             ),

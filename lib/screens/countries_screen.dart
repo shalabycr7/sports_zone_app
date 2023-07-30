@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -104,12 +105,9 @@ class _MySportsState extends State<MySports> {
                                                         .spaceBetween,
                                                 children: [
                                                   CircleAvatar(
-                                                    backgroundImage:
-                                                        NetworkImage(state
-                                                                .ourresponse
-                                                                .result![i]
-                                                                .countryLogo ??
-                                                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0'), //NetworkImage
+                                                    backgroundColor:
+                                                        const Color.fromARGB(
+                                                            255, 9, 113, 134),
                                                     radius: ScreenUtil()
                                                                 .orientation ==
                                                             Orientation
@@ -120,6 +118,35 @@ class _MySportsState extends State<MySports> {
                                                         : ScreenUtil()
                                                                 .screenHeight *
                                                             0.06,
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: state
+                                                              .ourresponse
+                                                              .result![i]
+                                                              .countryLogo ??
+                                                          'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
+                                                          Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          image:
+                                                              DecorationImage(
+                                                            image:
+                                                                imageProvider,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          const CircularProgressIndicator(),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.network(
+                                                              'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0'),
+                                                    ),
                                                   ),
                                                   Text(
                                                     state.ourresponse.result![i]

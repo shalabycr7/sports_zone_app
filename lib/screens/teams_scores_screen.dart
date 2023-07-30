@@ -49,7 +49,6 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
 
   @override
   Widget build(BuildContext context) {
-    var screensize = MediaQuery.of(context).size;
     Color overAllColor = const Color.fromARGB(255, 9, 113, 134);
     return SafeArea(
       child: BlocBuilder<TeamsScoresCubit, TeamsScoresState>(
@@ -159,8 +158,8 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                               color: Colors.blueGrey),
                                         ),
                                         filled: true,
-                                        fillColor:
-                                            Color.fromARGB(255, 247, 247, 247),
+                                        fillColor: const Color.fromARGB(
+                                            255, 247, 247, 247),
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0),
@@ -339,7 +338,14 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                             children: [
                                               CircleAvatar(
                                                 backgroundColor: overAllColor,
-                                                radius: 20,
+                                                radius: ScreenUtil()
+                                                            .orientation ==
+                                                        Orientation.landscape
+                                                    ? ScreenUtil().screenWidth *
+                                                        0.05
+                                                    : ScreenUtil()
+                                                            .screenHeight *
+                                                        0.03,
                                                 child: Text(
                                                   '${i + 1}',
                                                   textAlign: TextAlign.center,
