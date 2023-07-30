@@ -13,17 +13,29 @@ part 'teams_scores_state.dart';
 class TeamsScoresCubit extends Cubit<TeamsScoresState> {
   TeamsScoresCubit() : super(TeamsScoresInitial());
 
-  getTeam(int id) {
-    // emit(AllNewsCubitLoading());
-    Teams_Scorer().getTeams(search.text,id).then((value) {
-      if (value != null) emit(TeamsScoresTeams(ourresponse: value));
+  Future<void> getTeam(int id) async {
+    emit(TeamsScoresLoading());
+    Teams_Scorer().getTeams(search.text, id).then((value) {
+      if (value != null) {
+        print("on");
+        emit(TeamsScoresTeams(ourresponse: value));
+      } else {
+        print("no yes");
+        emit(TeamsScoresError());
+      }
     });
   }
 
-  getTopScorers(int id) {
-    // emit(AllNewsCubitLoading());
+  Future<void> getTopScorers(int id) async {
+    emit(TeamsScoresLoading());
     TopScorer().getTopScorers(id).then((value) {
-      if (value != null) emit(TeamsScoresTopScorers(response: value));
+      if (value != null) {
+        print("on");
+        emit(TeamsScoresTopScorers(response: value));
+      } else {
+        print("no yes");
+        emit(TeamsScoresError());
+      }
     });
   }
 }

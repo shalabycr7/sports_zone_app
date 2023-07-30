@@ -10,6 +10,10 @@ class TeamsScoresTeams extends TeamsScoresState {
   TeamsScoresTeams({required this.ourresponse});
 }
 
+class TeamsScoresLoading extends TeamsScoresState {}
+
+class TeamsScoresError extends TeamsScoresState {}
+
 class TeamsScoresTopScorers extends TeamsScoresState {
   final TopScorersModel response;
   TeamsScoresTopScorers({required this.response});

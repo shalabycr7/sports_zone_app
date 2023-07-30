@@ -28,13 +28,14 @@ class _PlayersScreenState extends State<PlayersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int kk = 0;
     var screensize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(body: BlocBuilder<PlayersCubit, PlayersState>(
         builder: (context, state) {
           return Container(
             color: Theme.of(context).primaryColor,
-            child: Stack(
+            child: Column(
               children: [
                 Align(
                   alignment: Alignment.topCenter,
@@ -114,6 +115,7 @@ class _PlayersScreenState extends State<PlayersScreen> {
                               itemCount:
                                   state.ourresponse.result![0].players!.length,
                               itemBuilder: (BuildContext context, int i) {
+                                kk++;
                                 if (state.ourresponse.result![0].players![i]
                                             .playerImage !=
                                         null &&
@@ -539,7 +541,6 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                         ),
                                       ));
                                 }
-                                return null;
                               }),
                         )
                       else if (state is PlayersOne &&
@@ -562,8 +563,9 @@ class _PlayersScreenState extends State<PlayersScreen> {
                                     ? ScreenUtil().screenWidth * 0.05
                                     : ScreenUtil().screenHeight * 0.06,
                                 child: CachedNetworkImage(
-                                  imageUrl: state
-                                      .ourresponse1.result![0].playerImage!,
+                                  imageUrl: state.ourresponse1.result![0]
+                                          .playerImage ??
+                                      " ",
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
                                     decoration: BoxDecoration(
@@ -624,7 +626,8 @@ class _PlayersScreenState extends State<PlayersScreen> {
                             ],
                           ),
                         )
-                      else if (searchPlayer.text != "")
+                      else if (state is PlayersOne &&
+                          searchPlayer.text.length > 0)
                         Center(
                           child: Text(
                             "Not Found",
@@ -637,14 +640,10 @@ class _PlayersScreenState extends State<PlayersScreen> {
                           ),
                         )
                       else
-                        const Center(
-                          child: CircularProgressIndicator(),
+                        Center(
+                          child: Text("not found"),
                         )
                     ]),
-                    // TeamsScoresCubit TeamsScoresState
-                    /*ListView.builder(
-                            itemCount: 5,
-                            itemBuilder: (BuildContext context, int index) {*/
                   ),
                 ),
               ],

@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
 final TextEditingController search = TextEditingController();
+int k = 0;
 
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
@@ -37,6 +38,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
 
   void _handleTabChange() {
     if (_tabController.index == 0) {
+      search.text = "";
       context.read<TeamsScoresCubit>().getTeam(widget.id);
       // Handle home tab press action
     } else if (_tabController.index == 1) {
@@ -49,6 +51,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
   @override
   Widget build(BuildContext context) {
     Color overAllColor = primaryColor;
+
     return SafeArea(
       child: BlocBuilder<TeamsScoresCubit, TeamsScoresState>(
         builder: (context, state) {
@@ -103,6 +106,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                     ],
                     onTap: (index) {
                       if (index == 0) {
+                        search.text = "";
                         context.read<TeamsScoresCubit>().getTeam(widget.id);
                         // Handle home tab press action
                       } else if (index == 1) {
@@ -140,9 +144,11 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                             Column(
                               children: [
                                 if (state is TeamsScoresTeams)
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.height *
+                                        (0.1),
                                     child: TextFormField(
                                       controller: search,
                                       decoration: InputDecoration(
@@ -188,6 +194,10 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                         ),
                                       ),
                                     ),
+                                  ),
+                                if (state is TeamsScoresLoading)
+                                  Center(
+                                    child: CircularProgressIndicator(),
                                   ),
                                 if (state is TeamsScoresTeams &&
                                     state.ourresponse.result != null)
@@ -304,25 +314,22 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                       ),
                                     ),
                                   )
-                                else if (search.text != '')
-                                  const Center(
-                                    child: Text(
-                                      'not found',
-                                    ),
-                                  )
-                                else
-                                  const Center(
-                                    child: CircularProgressIndicator(),
-                                  )
+                                else if (state is TeamsScoresTeams &&
+                                    state.ourresponse.result!.length == 0)
+                                  Center(child: Text("NOt found"))
                               ],
                             ),
-                            if (state is TeamsScoresTopScorers)
-                              SingleChildScrollView(
-                                child: Column(
-                                  children: [
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  if (state is TeamsScoresLoading)
+                                    Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  else if (state is TeamsScoresTopScorers)
                                     for (int i = 0;
                                         i < state.response.result.length;
-                                        i++)
+                                        i++, k++)
                                       if (state.response.result[i].playerName !=
                                               null &&
                                           state.response.result[i].teamName !=
@@ -330,6 +337,14 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                           state.response.result[i].goals !=
                                               null)
                                         Container(
+                                          // width: MediaQuery.of(context)
+                                          //         .size
+                                          //         .width *
+                                          //     0.8,
+                                          // height: MediaQuery.of(context)
+                                          //         .size
+                                          //         .height *
+                                          //     0.6,
                                           margin: const EdgeInsets.symmetric(
                                               vertical: 15),
                                           padding: const EdgeInsets.symmetric(
@@ -430,16 +445,12 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                               ),
                                             ],
                                           ),
-                                        )
-                                      else
-                                        const Text("shshs"),
-                                  ],
-                                ),
-                              )
-                            else
-                              const Center(
-                                child: CircularProgressIndicator(),
-                              )
+                                        ),
+                                  if (state is TeamsScoresError)
+                                    Center(child: Text("not found")),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
