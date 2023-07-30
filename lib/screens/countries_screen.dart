@@ -16,11 +16,27 @@ class MySports extends StatefulWidget {
   State<MySports> createState() => _MySportsState();
 }
 
-class _MySportsState extends State<MySports> {
+class _MySportsState extends State<MySports> with TickerProviderStateMixin {
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
+
     context.read<CountiresCubit>().getCountiers();
+
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _animation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -41,7 +57,7 @@ class _MySportsState extends State<MySports> {
                   Expanded(
                       child: Container(
                           height: ScreenUtil().screenHeight * 4 / 5,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             color: secondryColor,
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(25),
@@ -92,77 +108,84 @@ class _MySportsState extends State<MySports> {
                                                 ),
                                               );
                                             },
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                color: Colors.white60,
-                                              ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  CircleAvatar(
-                                                    backgroundColor:
-                                                        const Color.fromARGB(
-                                                            255, 9, 113, 134),
-                                                    radius: ScreenUtil()
-                                                                .orientation ==
-                                                            Orientation
-                                                                .landscape
-                                                        ? ScreenUtil()
-                                                                .screenWidth *
-                                                            0.05
-                                                        : ScreenUtil()
-                                                                .screenHeight *
-                                                            0.06,
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: state
-                                                              .ourresponse
-                                                              .result![i]
-                                                              .countryLogo ??
-                                                          'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
-                                                      imageBuilder: (context,
-                                                              imageProvider) =>
-                                                          Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          image:
-                                                              DecorationImage(
+                                            child: FadeTransition(
+                                              opacity: _animation,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.white60,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    CircleAvatar(
+                                                      backgroundColor:
+                                                          const Color.fromARGB(
+                                                              255, 9, 113, 134),
+                                                      radius: ScreenUtil()
+                                                                  .orientation ==
+                                                              Orientation
+                                                                  .landscape
+                                                          ? ScreenUtil()
+                                                                  .screenWidth *
+                                                              0.05
+                                                          : ScreenUtil()
+                                                                  .screenHeight *
+                                                              0.06,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: state
+                                                                .ourresponse
+                                                                .result![i]
+                                                                .countryLogo ??
+                                                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
                                                             image:
-                                                                imageProvider,
-                                                            fit: BoxFit.cover,
+                                                                DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Image.network(
+                                                                'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0'),
                                                       ),
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          const CircularProgressIndicator(),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Image.network(
-                                                              'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0'),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    state.ourresponse.result![i]
-                                                            .countryName ??
-                                                        'Unknown',
-                                                    style:
-                                                        GoogleFonts.quicksand(
-                                                            fontSize: 13.sp,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                  ),
-                                                ],
+                                                    Text(
+                                                      state
+                                                              .ourresponse
+                                                              .result![i]
+                                                              .countryName ??
+                                                          'Unknown',
+                                                      style:
+                                                          GoogleFonts.quicksand(
+                                                              fontSize: 13.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),

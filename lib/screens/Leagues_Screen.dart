@@ -12,8 +12,6 @@ import 'package:sports_zone/screens/teams_scores_screen.dart';
 import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
-int countriesKey = 0;
-
 class LeaguesScreen extends StatefulWidget {
   final int loop;
   const LeaguesScreen({super.key, required this.loop});
@@ -22,16 +20,25 @@ class LeaguesScreen extends StatefulWidget {
   State<LeaguesScreen> createState() => _LeaguesScreenState();
 }
 
-class _LeaguesScreenState extends State<LeaguesScreen> {
+class _LeaguesScreenState extends State<LeaguesScreen> with TickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<Offset> _animation;
+
   @override
   void initState() {
     super.initState();
+     _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    _animation = Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero)
+        .animate(_controller);
+    _controller.forward();
     context.read<LeaguesCubit>().getLeagues();
   }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     return SafeArea(
         child: Scaffold(
             body: Container(
@@ -96,63 +103,66 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
                                                     ),
                                                   );
                                                 },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    color: Colors.white60,
-                                                  ),
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5),
-                                                  margin: const EdgeInsets
-                                                      .symmetric(vertical: 10),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          state
-                                                                  .ourrresponse
-                                                                  .result![i]
-                                                                  .leagueName ??
-                                                              'Unkown league',
-                                                          style: GoogleFonts
-                                                              .quicksand(
-                                                                  fontSize:
-                                                                      14.sp,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 80.h,
-                                                        width: 80.w,
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl: state
-                                                                  .ourrresponse
-                                                                  .result![i]
-                                                                  .leagueLogo ??
-                                                              "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              const CircularProgressIndicator(),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              const Icon(
-                                                            Icons.error,
+                                                child: SlideTransition(
+                                                  position: _animation,
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      color: Colors.white60,
+                                                    ),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5),
+                                                    margin: const EdgeInsets
+                                                        .symmetric(vertical: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            state
+                                                                    .ourrresponse
+                                                                    .result![i]
+                                                                    .leagueName ??
+                                                                'Unkown league',
+                                                            style: GoogleFonts
+                                                                .quicksand(
+                                                                    fontSize:
+                                                                        14.sp,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        SizedBox(
+                                                          height: 80.h,
+                                                          width: 80.w,
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: state
+                                                                    .ourrresponse
+                                                                    .result![i]
+                                                                    .leagueLogo ??
+                                                                "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                const CircularProgressIndicator(),
+                                                            errorWidget: (context,
+                                                                    url, error) =>
+                                                                const Icon(
+                                                              Icons.error,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               )
