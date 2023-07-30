@@ -154,278 +154,294 @@ class _Players_ScreenState extends State<Players_Screen> {
                                         showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return SingleChildScrollView(
-                                                child: AlertDialog(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  backgroundColor: Colors.white,
-                                                  title: Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 30),
-                                                      child: CircleAvatar(
-                                                        backgroundColor:
-                                                            Colors.grey,
-                                                        radius: 75,
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl: state
-                                                              .ourresponse
-                                                              .result![0]
-                                                              .players![i]
-                                                              .playerImage!,
-                                                          imageBuilder: (context,
-                                                                  imageProvider) =>
-                                                              Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              image:
-                                                                  DecorationImage(
-                                                                image:
-                                                                    imageProvider,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              CircularProgressIndicator(),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              Image.asset(
-                                                                  "assets/images/pngwing.com.png"),
-                                                        ),
-                                                      )),
-                                                  content: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  bottom: 8),
-                                                          child: Text(
-                                                            state
+                                              return Center(
+                                                child: SingleChildScrollView(
+                                                  child: AlertDialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    title: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 30),
+                                                        child: CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.grey,
+                                                          radius: 75,
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: state
                                                                 .ourresponse
                                                                 .result![0]
                                                                 .players![i]
-                                                                .playerName!,
-                                                            style: GoogleFonts
-                                                                .nunito(
-                                                              fontSize: 30,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                                .playerImage!,
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                image:
+                                                                    DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                CircularProgressIndicator(),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                Image.asset(
+                                                                    "assets/images/pngwing.com.png"),
+                                                          ),
+                                                        )),
+                                                    content: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    bottom: 8),
+                                                            child: Text(
+                                                              state
+                                                                  .ourresponse
+                                                                  .result![0]
+                                                                  .players![i]
+                                                                  .playerName!,
+                                                              style: GoogleFonts
+                                                                  .nunito(
+                                                                fontSize: 30,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Player Number: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerNumber ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Player Country: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerCountry ??
+                                                                      "Unknown",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Player Position: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerType ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Player Age: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerAge ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Yellow Cards num: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerYellowCards ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "Red Cards num: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerRedCards ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  "player goals: ",
+                                                                  style: style,
+                                                                ),
+                                                                Text(
+                                                                  state
+                                                                          .ourresponse
+                                                                          .result![
+                                                                              0]
+                                                                          .players![
+                                                                              i]
+                                                                          .playerGoals ??
+                                                                      "",
+                                                                  style: style,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ]),
+                                                    actions: [
+                                                      Center(
+                                                        child: Container(
+                                                          width:
+                                                              screensize.width *
+                                                                  0.3,
+                                                          child: ElevatedButton(
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .blueGrey, // set the background color of the button
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20), // set the rounded corners
+                                                              ),
+                                                            ),
+                                                            onPressed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Text(
+                                                              "Close",
+                                                              style: GoogleFonts
+                                                                  .nunito(
+                                                                fontSize: 16.sp,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Player Number: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerNumber ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Player Country: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerCountry ??
-                                                                    "Unknown",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Player Position: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerType ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Player Age: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerAge ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Yellow Cards num: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerYellowCards ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "Red Cards num: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerRedCards ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Row(
-                                                            children: [
-                                                              Text(
-                                                                "player goals: ",
-                                                                style: style,
-                                                              ),
-                                                              Text(
-                                                                state
-                                                                        .ourresponse
-                                                                        .result![
-                                                                            0]
-                                                                        .players![
-                                                                            i]
-                                                                        .playerGoals ??
-                                                                    "",
-                                                                style: style,
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ]),
-                                                  actions: [
-                                                    Center(
-                                                      child: ElevatedButton(
-                                                        style: ButtonStyle(
-                                                          backgroundColor:
-                                                              MaterialStateProperty
-                                                                  .all<Color>(Colors
-                                                                      .blueGrey),
-                                                          minimumSize:
-                                                              MaterialStateProperty
-                                                                  .all(const Size(
-                                                                      120,
-                                                                      40)), // Adjust the width and height as needed
-                                                        ),
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                          "Close",
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            fontSize: 16.sp,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
                                               );
                                             });
