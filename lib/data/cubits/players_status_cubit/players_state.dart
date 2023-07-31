@@ -15,7 +15,4 @@ class PlayersOne extends PlayersState {
   PlayersOne({required this.ourresponse1});
 }
 
-class Contry extends PlayersState {
-  final CountiersModels ourresponse1;
-  Contry({required this.ourresponse1});
-}
+
