@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: Container(
                   height: (4 / 5).sh,
                   decoration: BoxDecoration(
-                    color: secondryColor,
+                    color: secondaryColor,
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(25),
                     ),

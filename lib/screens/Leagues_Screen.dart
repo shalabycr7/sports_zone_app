@@ -62,7 +62,7 @@ class _LeaguesScreenState extends State<LeaguesScreen>
                         child: Container(
                             height: ScreenUtil().screenHeight * 4 / 5,
                             decoration: BoxDecoration(
-                              color: secondryColor,
+                              color: secondaryColor,
                               borderRadius: const BorderRadius.vertical(
                                 top: Radius.circular(25),
                               ),

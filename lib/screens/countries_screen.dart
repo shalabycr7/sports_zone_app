@@ -58,7 +58,7 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
                       child: Container(
                           height: ScreenUtil().screenHeight * 4 / 5,
                           decoration: BoxDecoration(
-                            color: secondryColor,
+                            color: secondaryColor,
                             borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(25),
                             ),

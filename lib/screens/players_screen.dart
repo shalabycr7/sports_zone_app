@@ -80,7 +80,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                           ? ScreenUtil().screenHeight * 0.86
                           : ScreenUtil().screenHeight * 0.78,
                       decoration: BoxDecoration(
-                        color: secondryColor,
+                        color: secondaryColor,
                         borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(25),
                         ),

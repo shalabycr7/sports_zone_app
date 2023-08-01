@@ -140,7 +140,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                             vertical: 15, horizontal: 20),
                         height: ScreenUtil().screenHeight * 0.8,
                         decoration: BoxDecoration(
-                          color: secondryColor,
+                          color: secondaryColor,
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(25),
                           ),
