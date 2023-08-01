@@ -1,4 +1,3 @@
-// ignore_for_file: camel_case_types, unnecessary_import
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +136,7 @@ class _LeaguesScreenState extends State<LeaguesScreen>
                                                                     .ourrresponse
                                                                     .result![i]
                                                                     .leagueName ??
-                                                                'Unkown league',
+                                                                'Unknown',
                                                             style: GoogleFonts
                                                                 .quicksand(
                                                                     fontSize:

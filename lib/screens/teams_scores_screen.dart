@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.dart';
 import 'package:sports_zone/screens/players_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
 final TextEditingController search = TextEditingController();
@@ -13,6 +13,7 @@ final TextEditingController search = TextEditingController();
 class TeamsScoresScreen extends StatefulWidget {
   final int id;
   final String? name;
+
   const TeamsScoresScreen({super.key, required this.id, required this.name});
 
   @override
@@ -59,7 +60,6 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
 
   @override
   Widget build(BuildContext context) {
-    Color overAllColor = primaryColor;
     return SafeArea(
       child: BlocBuilder<TeamsScoresCubit, TeamsScoresState>(
         builder: (context, state) {
@@ -67,7 +67,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
             appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 0,
-              backgroundColor: overAllColor,
+              backgroundColor: primaryColor,
               title: Center(
                   child: Text(
                 "${widget.name}",
@@ -79,7 +79,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: Container(
-                  color: overAllColor,
+                  color: primaryColor,
                   child: TabBar(
                     indicatorColor: Colors.white,
                     indicatorSize: TabBarIndicatorSize.label,
@@ -129,7 +129,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
               ),
             ),
             body: Container(
-              color: overAllColor,
+              color: primaryColor,
               child: Stack(
                 children: [
                   Align(
@@ -238,7 +238,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                           builder: (context) =>
                                                               PlayersScreen(
                                                             in1: index,
-                                                            tmname: state
+                                                            teamName: state
                                                                 .ourresponse
                                                                 .result![index]
                                                                 .teamName!,
@@ -280,8 +280,13 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                                     errorWidget: (context,
                                                                             url,
                                                                             error) =>
-                                                                        Image.asset(
-                                                                            "assets/images/pngwing.com.png"),
+                                                                        Icon(
+                                                                      Icons
+                                                                          .person,
+                                                                      size: 85,
+                                                                      color:
+                                                                          primaryColor,
+                                                                    ),
                                                                     fit: BoxFit
                                                                         .cover,
                                                                   ),
@@ -370,7 +375,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                             child: Row(
                                               children: [
                                                 CircleAvatar(
-                                                  backgroundColor: overAllColor,
+                                                  backgroundColor: primaryColor,
                                                   radius: ScreenUtil()
                                                               .orientation ==
                                                           Orientation.landscape
@@ -404,7 +409,7 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                         style:
                                                             GoogleFonts.nunito(
                                                           fontSize: 18.sp,
-                                                          color: overAllColor,
+                                                          color: primaryColor,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),

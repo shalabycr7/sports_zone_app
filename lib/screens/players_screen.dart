@@ -11,10 +11,10 @@ final TextEditingController searchPlayer = TextEditingController();
 
 class PlayersScreen extends StatefulWidget {
   final int in1;
-  final String tmname;
+  final String teamName;
   final int id;
   const PlayersScreen(
-      {super.key, required this.in1, required this.tmname, required this.id});
+      {super.key, required this.in1, required this.teamName, required this.id});
 
   @override
   State<PlayersScreen> createState() => _PlayersScreenState();
@@ -33,7 +33,7 @@ class _PlayersScreenState extends State<PlayersScreen>
     _animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _animationController.forward();
-    context.read<PlayersCubit>().getPlayer(widget.tmname, widget.id);
+    context.read<PlayersCubit>().getPlayer(widget.teamName, widget.id);
   }
 
   @override
@@ -60,7 +60,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                     padding:
                         EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
                     child: Text(
-                      "${widget.tmname} Players",
+                      "${widget.teamName} Players",
                       style: GoogleFonts.nunito(
                         fontSize: 18.sp,
                         color: Colors.white,
@@ -126,7 +126,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                     } else {
                                       context
                                           .read<PlayersCubit>()
-                                          .getPlayer(widget.tmname, widget.id);
+                                          .getPlayer(widget.teamName, widget.id);
                                     }
                                   },
                                 ),
@@ -169,7 +169,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                         30),
                                                             child: CircleAvatar(
                                                               backgroundColor:
-                                                                  Colors.grey,
+                                                                  Colors.white,
                                                               radius: 75,
                                                               child:
                                                                   CachedNetworkImage(
@@ -201,8 +201,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 errorWidget: (context,
                                                                         url,
                                                                         error) =>
-                                                                    Image.asset(
-                                                                        "assets/images/pngwing.com.png"),
+                                                                     Icon(Icons.person,size: 85,color: primaryColor,),
                                                               ),
                                                             )),
                                                         content: Column(
@@ -243,7 +242,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Player Number: ",
+                                                                      "Shirt Number: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -253,7 +252,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerNumber ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -268,7 +267,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Player Country: ",
+                                                                      "Country: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -293,7 +292,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Player Position: ",
+                                                                      "Position: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -303,7 +302,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerType ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -318,7 +317,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Player Age: ",
+                                                                      "Age: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -328,7 +327,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerAge ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -343,7 +342,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Yellow Cards num: ",
+                                                                      "Yellow Cards: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -353,7 +352,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerYellowCards ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -368,7 +367,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "Red Cards num: ",
+                                                                      "Red Cards: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -378,7 +377,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerRedCards ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -393,7 +392,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
-                                                                      "player goals: ",
+                                                                      "Goals: ",
                                                                       style:
                                                                           nunitoStyle,
                                                                     ),
@@ -403,7 +402,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                               .result![0]
                                                                               .players![i]
                                                                               .playerGoals ??
-                                                                          "",
+                                                                          "Unknown",
                                                                       style:
                                                                           nunitoStyle,
                                                                     )
@@ -506,8 +505,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                         const CircularProgressIndicator(),
                                                     errorWidget: (context, url,
                                                             error) =>
-                                                        Image.asset(
-                                                            "assets/images/pngwing.com.png"),
+                                                        Icon(Icons.person,size: 85,color: primaryColor,),
                                                   ),
                                                 ),
                                                 const SizedBox(width: 20),
@@ -613,8 +611,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                       placeholder: (context, url) =>
                                           const CircularProgressIndicator(),
                                       errorWidget: (context, url, error) =>
-                                          Image.asset(
-                                              "assets/images/pngwing.com.png"),
+                                          Icon(Icons.person,size: 85,color: primaryColor,),
                                     ),
                                   ),
                                   const SizedBox(width: 20),
