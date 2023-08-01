@@ -127,8 +127,7 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
                                                   children: [
                                                     CircleAvatar(
                                                       backgroundColor:
-                                                          const Color.fromARGB(
-                                                              255, 9, 113, 134),
+                                                          Colors.transparent,
                                                       radius: ScreenUtil()
                                                                   .orientation ==
                                                               Orientation

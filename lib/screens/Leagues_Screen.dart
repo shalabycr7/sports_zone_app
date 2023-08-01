@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -158,9 +157,21 @@ class _LeaguesScreenState extends State<LeaguesScreen>
                                                                     .result![i]
                                                                     .leagueLogo ??
                                                                 "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                                            placeholder: (context,
-                                                                    url) =>
-                                                                const CircularProgressIndicator(),
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    Center(
+                                                              child: SizedBox(
+                                                                width: ScreenUtil()
+                                                                        .screenWidth *
+                                                                    0.1,
+                                                                height: ScreenUtil()
+                                                                        .screenWidth *
+                                                                    0.1,
+                                                                child:
+                                                                    const CircularProgressIndicator(),
+                                                              ),
+                                                            ),
                                                             errorWidget:
                                                                 (context, url,
                                                                         error) =>
