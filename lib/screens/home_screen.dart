@@ -14,9 +14,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<Offset> _animation;
-
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
@@ -26,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(seconds: 1),
     );
-    _animation = Tween<Offset>(begin: const Offset(-1,0), end: Offset.zero)
+    _animation = Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero)
         .animate(_controller);
     _controller.forward();
   }
@@ -45,6 +44,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final screenWidth = ScreenUtil().screenWidth;
+    final crossAxisCount =
+        screenWidth > 600 && ScreenUtil().orientation == Orientation.landscape
+            ? 4
+            : 2;
 
     return SafeArea(
       child: Scaffold(
@@ -61,37 +64,33 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               Expanded(
                 child: Container(
-                  height: (4 / 5).sh,
                   decoration: BoxDecoration(
                     color: secondaryColor,
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(25),
                     ),
                   ),
-                  width: screenWidth,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.05,
                       vertical: screenWidth * 0.04,
                     ),
                     child: GridView.count(
-                      crossAxisCount: screenWidth > 600 &&
-                              ScreenUtil().orientation == Orientation.landscape
-                          ? 4
-                          : 2,
+                      crossAxisCount: crossAxisCount,
                       crossAxisSpacing: screenWidth * 0.04,
                       mainAxisSpacing: screenWidth * 0.04,
-                      children: [
-                        for (int i = 0; i < categoriesImages.length; i++)
-                          SlideTransition(
-                            position: _animation,
-                            child: CardCategory(
-                              images: categoriesImages[i],
-                              sportName: categoriesTitle[i],
-                              brief: categoriesSub[i],
-                            ),
+                      childAspectRatio: 1.0,
+                      children: List.generate(
+                        categoriesImages.length,
+                        (index) => SlideTransition(
+                          position: _animation,
+                          child: CardCategory(
+                            images: categoriesImages[index],
+                            sportName: categoriesTitle[index],
+                            brief: categoriesSub[index],
                           ),
-                      ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
