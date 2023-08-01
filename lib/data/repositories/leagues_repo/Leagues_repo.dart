@@ -1,4 +1,3 @@
-// ignore: unused_import
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -14,15 +13,12 @@ class LeaguesModelsRepo {
 
       Map<String, dynamic> deCodedResponse = json.decode(response.body);
       if (response.statusCode == 200) {
-        // ignore: unused_local_variable
         Zsc data = Zsc.fromJson(deCodedResponse);
         return data;
       } else {
-        print("Requist faild");
         return null;
       }
     } catch (e) {
-      print("Error:$e");
       return null;
     }
   }

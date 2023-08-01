@@ -12,15 +12,12 @@ class CountiersModelsRepo {
 
       Map<String, dynamic> deCodedResponse = json.decode(response.body);
       if (response.statusCode == 200) {
-        // ignore: unused_local_variable
         CountiersModels data = CountiersModels.fromJson(deCodedResponse);
         return data;
       } else {
-        print("Requist faild");
         return null;
       }
     } catch (e) {
-      print("Error:$e");
       return null;
     }
   }

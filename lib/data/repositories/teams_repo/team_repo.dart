@@ -4,28 +4,25 @@ import 'package:http/http.dart' as http;
 
 import '../../models/tems_model/tems_model.dart';
 
-class Teams_Scorer {
-  Future<TemsModel?> getTeams(String Search, int id) async {
+class TeamsScorer {
+  Future<TemsModel?> getTeams(String search, int id) async {
     try {
       http.Response response;
-      // leagueid not static
-      if (Search != '') {
+      if (search != '') {
         response = await http.get(Uri.parse(
-            "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=$id&teamName=$Search"));
+            "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=e9b633c2759b431301301d00f9a9a3809b238030211a54b71e43e1e0db147f13&leagueId=$id&teamName=$search"));
       } else {
         response = await http.get(Uri.parse(
-            "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=b1adac156f26d4e1617feed2cf9ba42f054958c3a0f7b982a9bd24faa68f7252&leagueId=$id"));
+            "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=e9b633c2759b431301301d00f9a9a3809b238030211a54b71e43e1e0db147f13&leagueId=$id"));
       }
       Map<String, dynamic> decodedresponse = json.decode(response.body);
       if (response.statusCode == 200) {
         TemsModel data = TemsModel.fromJson(decodedresponse);
         return data;
       } else {
-        print("request failed");
         return null;
       }
     } catch (error) {
-      print("erroe:$error");
       return null;
     }
   }
