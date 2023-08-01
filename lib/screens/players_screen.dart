@@ -65,7 +65,6 @@ class _PlayersScreenState extends State<PlayersScreen>
                         fontSize: 18.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: 3.0,
                       ),
                     ),
                   ),
@@ -124,9 +123,8 @@ class _PlayersScreenState extends State<PlayersScreen>
                                           .read<PlayersCubit>()
                                           .getPlayer1(searchPlayer.text);
                                     } else {
-                                      context
-                                          .read<PlayersCubit>()
-                                          .getPlayer(widget.teamName, widget.id);
+                                      context.read<PlayersCubit>().getPlayer(
+                                          widget.teamName, widget.id);
                                     }
                                   },
                                 ),
@@ -198,10 +196,16 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                                 placeholder: (context,
                                                                         url) =>
                                                                     const CircularProgressIndicator(),
-                                                                errorWidget: (context,
-                                                                        url,
-                                                                        error) =>
-                                                                     Icon(Icons.person,size: 85,color: primaryColor,),
+                                                                errorWidget:
+                                                                    (context,
+                                                                            url,
+                                                                            error) =>
+                                                                        Icon(
+                                                                  Icons.person,
+                                                                  size: 85,
+                                                                  color:
+                                                                      primaryColor,
+                                                                ),
                                                               ),
                                                             )),
                                                         content: Column(
@@ -472,8 +476,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                               children: [
                                                 CircleAvatar(
                                                   backgroundColor:
-                                                      const Color.fromARGB(
-                                                          255, 9, 113, 134),
+                                                      Colors.transparent,
                                                   radius: ScreenUtil()
                                                               .orientation ==
                                                           Orientation.landscape
@@ -503,9 +506,13 @@ class _PlayersScreenState extends State<PlayersScreen>
                                                     placeholder: (context,
                                                             url) =>
                                                         const CircularProgressIndicator(),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        Icon(Icons.person,size: 85,color: primaryColor,),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(
+                                                      Icons.person,
+                                                      size: 85,
+                                                      color: primaryColor,
+                                                    ),
                                                   ),
                                                 ),
                                                 const SizedBox(width: 20),
@@ -577,8 +584,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                               state.ourresponse1.result != null &&
                               state.ourresponse1.result![0].playerImage != null)
                             Container(
-                              margin:
-                                  const EdgeInsets.symmetric(vertical: 15),
+                              margin: const EdgeInsets.symmetric(vertical: 15),
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 15),
                               decoration: BoxDecoration(
@@ -588,18 +594,17 @@ class _PlayersScreenState extends State<PlayersScreen>
                               child: Row(
                                 children: [
                                   CircleAvatar(
-                                    backgroundColor: const Color.fromARGB(
-                                        255, 9, 113, 134),
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 9, 113, 134),
                                     radius: ScreenUtil().orientation ==
                                             Orientation.landscape
                                         ? ScreenUtil().screenWidth * 0.05
                                         : ScreenUtil().screenHeight * 0.06,
                                     child: CachedNetworkImage(
-                                      imageUrl: state.ourresponse1.result![0]
-                                          .playerImage!,
-                                      imageBuilder:
-                                          (context, imageProvider) =>
-                                              Container(
+                                      imageUrl: state
+                                          .ourresponse1.result![0].playerImage!,
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
@@ -611,7 +616,11 @@ class _PlayersScreenState extends State<PlayersScreen>
                                       placeholder: (context, url) =>
                                           const CircularProgressIndicator(),
                                       errorWidget: (context, url, error) =>
-                                          Icon(Icons.person,size: 85,color: primaryColor,),
+                                          Icon(
+                                        Icons.person,
+                                        size: 85,
+                                        color: primaryColor,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 20),
@@ -626,8 +635,8 @@ class _PlayersScreenState extends State<PlayersScreen>
                                               "",
                                           style: GoogleFonts.nunito(
                                             fontSize: 18.sp,
-                                            color: Theme.of(context)
-                                                .primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
