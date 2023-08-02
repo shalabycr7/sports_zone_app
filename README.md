@@ -1,4 +1,4 @@
-![cover present](https://github.com/shalabycr7/sports_zone_app/assets/17945581/b8b94134-a735-4847-89ce-8af6960bd75f)
+![app_showcase](https://github.com/shalabycr7/sports_zone_app/assets/17945581/a9e42dc4-8761-4ab2-ab9a-71b6a8251874)
 
 # Sports Zone
 
@@ -28,4 +28,5 @@ Sports app using flutter
 ![app2](https://github.com/shalabycr7/sports_zone_app/assets/17945581/92f49a6c-f25e-430e-a015-3f52be199f05)
 ![app3](https://github.com/shalabycr7/sports_zone_app/assets/17945581/ca75bdb0-11f2-419d-b416-645b09813587)
 ![app4](https://github.com/shalabycr7/sports_zone_app/assets/17945581/ed0841ef-f873-4f31-af0b-ed48b2e66a27)
+
 
