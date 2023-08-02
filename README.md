@@ -1,3 +1,5 @@
+![cover present](https://github.com/shalabycr7/sports_zone_app/assets/17945581/b8b94134-a735-4847-89ce-8af6960bd75f)
+
 # Sports Zone
 
 Sports app using flutter
@@ -10,16 +12,12 @@ Sports app using flutter
 * Choose any country-league-team you want.
 * Search for your favourite team or player.
 * Display all the players in that team and show the status of each player like:
-
     * shirt number
-
     * age
-
     * position
-
     * number of goals.
-
     * number of red/yellow card
+
 * Find the top scorers in each league.
 * Remote notification using firebase.
 * Fully responsive on all devices.
