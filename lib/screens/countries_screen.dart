@@ -35,8 +35,8 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController.dispose();
     super.dispose();
+    _animationController.dispose();
   }
 
   @override

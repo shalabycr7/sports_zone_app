@@ -14,26 +14,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _animation;
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
     _saveAlreadySeen();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-    _animation = Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero)
-        .animate(_controller);
-    _controller.forward();
+    _animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+    _animationController.forward();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _animationController.dispose();
   }
 
   Future<void> _saveAlreadySeen() async {
@@ -82,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       childAspectRatio: 1.0,
                       children: List.generate(
                         categoriesImages.length,
-                        (index) => SlideTransition(
-                          position: _animation,
+                        (index) => FadeTransition(
+                          opacity: _animation,
                           child: CardCategory(
                             images: categoriesImages[index],
                             sportName: categoriesTitle[index],
