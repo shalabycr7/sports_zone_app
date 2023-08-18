@@ -12,6 +12,7 @@ import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.da
 import 'package:sports_zone/data/firebase_api.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
+import 'package:sports_zone/styles/styles_variables.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
               nextScreen:
                   alreadySeen ? const HomeScreen() : const OnBoardingScreen(),
               splashTransition: SplashTransition.fadeTransition,
+              backgroundColor: secondaryColor,
             ),
           );
         },
