@@ -12,12 +12,12 @@ import 'package:sports_zone/data/cubits/teams_status_cubit/teams_scores_cubit.da
 import 'package:sports_zone/data/firebase_api.dart';
 import 'package:sports_zone/screens/home_screen.dart';
 import 'package:sports_zone/screens/onboarding_screen.dart';
-import 'package:sports_zone/styles/styles_variables.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FireBaseApi().intitNot();
-  
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool alreadySeen = prefs.getBool('alreadySeen') ?? false;
 
@@ -47,16 +47,17 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Sports Zone',
             theme: ThemeData(
-              primaryColor: primaryColor,
-              dialogBackgroundColor: secondaryColor,
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color.fromARGB(255, 9, 113, 134)),
+              useMaterial3: true,
             ),
             home: AnimatedSplashScreen(
               duration: 3000,
               splash: SvgPicture.asset('assets/images/logo.svg'),
               splashIconSize: 100,
-              nextScreen: alreadySeen ? const HomeScreen() : const OnBoardingScreen(),
+              nextScreen:
+                  alreadySeen ? const HomeScreen() : const OnBoardingScreen(),
               splashTransition: SplashTransition.fadeTransition,
-              backgroundColor: secondaryColor,
             ),
           );
         },
