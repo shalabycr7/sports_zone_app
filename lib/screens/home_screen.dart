@@ -47,17 +47,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ? 4
             : 2;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          color: primaryColor,
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: SafeArea(
+        child: Container(
+          color: Theme.of(context).colorScheme.primary,
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
                 child: const TitleRow(
                   title: 'Select your favourite sport',
-                  textColor: Colors.white,
                 ),
               ),
               Expanded(

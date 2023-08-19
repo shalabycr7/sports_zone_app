@@ -55,7 +55,6 @@ class _LeaguesScreenState extends State<LeaguesScreen>
                             vertical: 20.h, horizontal: 15.w),
                         child: const TitleRow(
                           title: 'Select the League',
-                          textColor: Colors.white,
                         )),
                     Expanded(
                         child: Container(

@@ -39,6 +39,83 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
     _animationController.dispose();
   }
 
+  Future<void> _refreshData() async {
+    await context.read<CountiresCubit>().getCountiers();
+  }
+
+  Widget _buildGridView(var countries) {
+    return GridView.count(
+      crossAxisCount: ScreenUtil().screenWidth > 600 &&
+              ScreenUtil().orientation == Orientation.landscape
+          ? 4
+          : 2,
+      crossAxisSpacing: ScreenUtil().screenWidth * 0.04,
+      mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
+      children: <Widget>[
+        for (var country in countries)
+          if (country.countryLogo != null)
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        LeaguesScreen(loop: country.countryKey!),
+                  ),
+                );
+              },
+              child: FadeTransition(
+                opacity: _animation,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white60,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius:
+                            ScreenUtil().orientation == Orientation.landscape
+                                ? ScreenUtil().screenWidth * 0.05
+                                : ScreenUtil().screenHeight * 0.06,
+                        child: CachedNetworkImage(
+                          imageUrl: country.countryLogo!,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Image.network(
+                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
+                          ),
+                        ),
+                      ),
+                      Text(
+                        country.countryName ?? 'Unknown',
+                        style: GoogleFonts.quicksand(
+                          fontSize: 13.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -52,7 +129,6 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
                           vertical: 20.h, horizontal: 15.w),
                       child: const TitleRow(
                         title: 'Select the country',
-                        textColor: Colors.white,
                       )),
                   Expanded(
                       child: Container(
@@ -69,151 +145,53 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
                               horizontal: 0.05.sw,
                               vertical: 0.04.sw,
                             ),
-                            child: BlocBuilder<CountiresCubit, CountiresState>(
-                              builder: (context, state) {
-                                if (state is CountiresLoadind) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (state is CountiresSussess) {
-                                  return GridView.count(
-                                    crossAxisCount:
-                                        ScreenUtil().screenWidth > 600 &&
-                                                ScreenUtil().orientation ==
-                                                    Orientation.landscape
-                                            ? 4
-                                            : 2,
-                                    crossAxisSpacing:
-                                        ScreenUtil().screenWidth * 0.04,
-                                    mainAxisSpacing:
-                                        ScreenUtil().screenWidth * 0.04,
-                                    children: <Widget>[
-                                      for (int i = 0;
-                                          i < state.ourresponse.result!.length;
-                                          i++)
-                                        if (state.ourresponse.result![i]
-                                                .countryLogo !=
-                                            null)
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LeaguesScreen(
-                                                          loop: state
-                                                              .ourresponse
-                                                              .result![i]
-                                                              .countryKey!),
-                                                ),
-                                              );
-                                            },
-                                            child: FadeTransition(
-                                              opacity: _animation,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  color: Colors.white60,
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      radius: ScreenUtil()
-                                                                  .orientation ==
-                                                              Orientation
-                                                                  .landscape
-                                                          ? ScreenUtil()
-                                                                  .screenWidth *
-                                                              0.05
-                                                          : ScreenUtil()
-                                                                  .screenHeight *
-                                                              0.06,
-                                                      child: CachedNetworkImage(
-                                                        imageUrl: state
-                                                                .ourresponse
-                                                                .result![i]
-                                                                .countryLogo ??
-                                                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
-                                                        imageBuilder: (context,
-                                                                imageProvider) =>
-                                                            Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            image:
-                                                                DecorationImage(
-                                                              image:
-                                                                  imageProvider,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        placeholder: (context,
-                                                                url) =>
-                                                            const CircularProgressIndicator(),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Image.network(
-                                                                'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0'),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      state
-                                                              .ourresponse
-                                                              .result![i]
-                                                              .countryName ??
-                                                          'Unknown',
-                                                      style:
-                                                          GoogleFonts.quicksand(
-                                                              fontSize: 13.sp,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                    ),
-                                                  ],
-                                                ),
+                            child: RefreshIndicator(
+                              onRefresh: _refreshData,
+                              child:
+                                  BlocBuilder<CountiresCubit, CountiresState>(
+                                builder: (context, state) {
+                                  if (state is CountiresLoadind) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else if (state is CountiresSussess) {
+                                    return RefreshIndicator(
+                                      onRefresh: () async {
+                                        await context
+                                            .read<CountiresCubit>()
+                                            .getCountiers();
+                                      },
+                                      child: _buildGridView(
+                                          state.ourresponse.result),
+                                    );
+                                  } else {
+                                    return Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Lottie.asset(
+                                              'assets/icons/error_animation.json',
+                                              width: 200.w,
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              'An error has occurred',
+                                              style: GoogleFonts.quicksand(
+                                                fontSize: 16.sp,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                           ),
-                                    ],
-                                  );
-                                } else {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Lottie.asset(
-                                          'assets/icons/error_animation.json',
-                                          width: 200.w,
-                                        ),
+                                        ],
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          'An error has occurred',
-                                          style: GoogleFonts.quicksand(
-                                            fontSize: 16.sp,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }
-                              },
+                                    );
+                                  }
+                                },
+                              ),
                             ),
                           ))),
                 ],
