@@ -120,82 +120,72 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Container(
-              color: primaryColor,
-              child: Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 20.h, horizontal: 15.w),
-                      child: const TitleRow(
-                        title: 'Select the country',
-                      )),
-                  Expanded(
-                      child: Container(
-                          height: ScreenUtil().screenHeight * 4 / 5,
-                          decoration: BoxDecoration(
-                            color: secondaryColor,
-                            borderRadius: const BorderRadius.vertical(
-                              top: Radius.circular(25),
-                            ),
+          body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: Container(
+            color: primaryColor,
+            child: Column(
+              children: [
+                Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+                    child: const TitleRow(
+                      title: 'Select the country',
+                    )),
+                Expanded(
+                    child: Container(
+                        height: ScreenUtil().screenHeight * 4 / 5,
+                        decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(25),
                           ),
-                          width: ScreenUtil().screenWidth,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 0.05.sw,
-                              vertical: 0.04.sw,
-                            ),
-                            child: RefreshIndicator(
-                              onRefresh: _refreshData,
-                              child:
-                                  BlocBuilder<CountiresCubit, CountiresState>(
-                                builder: (context, state) {
-                                  if (state is CountiresLoadind) {
-                                    return const Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  } else if (state is CountiresSussess) {
-                                    return RefreshIndicator(
-                                      onRefresh: () async {
-                                        await context
-                                            .read<CountiresCubit>()
-                                            .getCountiers();
-                                      },
-                                      child: _buildGridView(
-                                          state.ourresponse.result),
-                                    );
-                                  } else {
-                                    return Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Lottie.asset(
-                                              'assets/icons/error_animation.json',
-                                              width: 200.w,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              'An error has occurred',
-                                              style: GoogleFonts.quicksand(
-                                                fontSize: 16.sp,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                        ),
+                        width: ScreenUtil().screenWidth,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 0.05.sw,
+                            vertical: 0.04.sw,
+                          ),
+                          child: BlocBuilder<CountiresCubit, CountiresState>(
+                            builder: (context, state) {
+                              if (state is CountiresLoadind) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (state is CountiresSussess) {
+                                return _buildGridView(state.ourresponse.result);
+                              } else {
+                                return Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Lottie.asset(
+                                          'assets/icons/error_animation.json',
+                                          width: 200.w,
+                                        ),
                                       ),
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                          ))),
-                ],
-              ))),
+                                      Expanded(
+                                        child: Text(
+                                          'An error has occurred',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 16.sp,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ))),
+              ],
+            )),
+      )),
     );
   }
 }
