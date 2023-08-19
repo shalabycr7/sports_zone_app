@@ -103,7 +103,6 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
                         country.countryName ?? 'Unknown',
                         style: GoogleFonts.quicksand(
                           fontSize: 13.sp,
-                          color: Colors.black,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -124,7 +123,7 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
           onRefresh: _refreshData,
           child: SafeArea(
             child: Container(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 child: Column(
                   children: [
                     Padding(
