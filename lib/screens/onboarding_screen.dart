@@ -39,15 +39,15 @@ class OnBoardingPageState extends State<OnBoardingScreen> {
           fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w500),
       bodyTextStyle: bodyStyle,
       bodyPadding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor:  secondaryColor,
+      pageColor: secondaryColor,
       imagePadding: EdgeInsets.zero,
     );
 
-    return SafeArea(
-      child: Scaffold(
-        body: IntroductionScreen(
+    return Scaffold(
+      body: SafeArea(
+        child: IntroductionScreen(
           key: introKey,
-          globalBackgroundColor:  secondaryColor,
+          globalBackgroundColor: secondaryColor,
           allowImplicitScrolling: true,
           autoScrollDuration: 3000,
           infiniteAutoScroll: true,
