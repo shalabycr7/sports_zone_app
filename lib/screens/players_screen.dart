@@ -583,91 +583,383 @@ class _PlayersScreenState extends State<PlayersScreen>
                                 )
                               else if (state is PlayersOne &&
                                   state.ourresponse1.result != null)
-                                Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 15),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.white60,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundColor: Colors.transparent,
-                                        radius: ScreenUtil().orientation ==
-                                                Orientation.landscape
-                                            ? ScreenUtil().screenWidth * 0.05
-                                            : ScreenUtil().screenHeight * 0.06,
-                                        child: CachedNetworkImage(
-                                          imageUrl: state.ourresponse1
-                                                  .result?[0].playerImage ??
-                                              "https://th.bing.com/th/id/R.3fd38d6ccfd0f7a1092c00879e737df6?rik=hu2HHcjcxoRgjA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_339111.png&ehk=1VSUO37%2fcX%2ba5RuLn%2b1VQFuCF%2fkAGZMz496wX%2fNpoLs%3d&risl=&pid=ImgRaw&r=0",
-                                          imageBuilder:
-                                              (context, imageProvider) =>
-                                                  Container(
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.cover,
+                                InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Center(
+                                            child: SingleChildScrollView(
+                                              child: AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                backgroundColor: Colors.white,
+                                                title: Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 30),
+                                                    child: CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      radius: 75,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: state
+                                                                .ourresponse1
+                                                                .result?[0]
+                                                                .playerImage ??
+                                                            "https://th.bing.com/th/id/R.3fd38d6ccfd0f7a1092c00879e737df6?rik=hu2HHcjcxoRgjA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_339111.png&ehk=1VSUO37%2fcX%2ba5RuLn%2b1VQFuCF%2fkAGZMz496wX%2fNpoLs%3d&risl=&pid=ImgRaw&r=0",
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            image:
+                                                                DecorationImage(
+                                                              image:
+                                                                  imageProvider,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Icon(
+                                                          Icons.person,
+                                                          size: 85,
+                                                          color: primaryColor,
+                                                        ),
+                                                      ),
+                                                    )),
+                                                content: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                bottom: 8),
+                                                        child: Text(
+                                                          state
+                                                              .ourresponse1
+                                                              .result![0]
+                                                              .playerName!,
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 30,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Shirt Number: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerNumber ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Country: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerCountry ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Position: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerType ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Age: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerAge ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Yellow Cards: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerYellowCards ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Red Cards: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerRedCards ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Goals: ",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            ),
+                                                            Text(
+                                                              state
+                                                                      .ourresponse1
+                                                                      .result![
+                                                                          0]
+                                                                      .playerGoals ??
+                                                                  "Unknown",
+                                                              style:
+                                                                  nunitoStyle,
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ]),
+                                                actions: [
+                                                  Center(
+                                                    child: SizedBox(
+                                                      width: screensize.width *
+                                                          0.3,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                          ),
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text(
+                                                          "Close",
+                                                          style: GoogleFonts
+                                                              .nunito(
+                                                            fontSize: 16.sp,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
-                                          ),
-                                          placeholder: (context, url) =>
-                                              const CircularProgressIndicator(),
-                                          errorWidget: (context, url, error) =>
-                                              Icon(
-                                            Icons.person,
-                                            size: 85,
-                                            color: primaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              state.ourresponse1.result![0]
-                                                      .playerName ??
-                                                  "",
-                                              style: GoogleFonts.nunito(
-                                                fontSize: 18.sp,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                fontWeight: FontWeight.w600,
+                                          );
+                                        });
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 15),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 15),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Colors.white60,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundColor: Colors.transparent,
+                                          radius: ScreenUtil().orientation ==
+                                                  Orientation.landscape
+                                              ? ScreenUtil().screenWidth * 0.05
+                                              : ScreenUtil().screenHeight *
+                                                  0.06,
+                                          child: CachedNetworkImage(
+                                            imageUrl: state.ourresponse1
+                                                    .result?[0].playerImage ??
+                                                "https://th.bing.com/th/id/R.3fd38d6ccfd0f7a1092c00879e737df6?rik=hu2HHcjcxoRgjA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_339111.png&ehk=1VSUO37%2fcX%2ba5RuLn%2b1VQFuCF%2fkAGZMz496wX%2fNpoLs%3d&risl=&pid=ImgRaw&r=0",
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    Container(
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
-                                            SizedBox(height: 10.h),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Team Position: ",
-                                                  style: GoogleFonts.nunito(
-                                                    fontSize: 14.sp,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  state.ourresponse1.result![0]
-                                                          .playerType ??
-                                                      " ",
-                                                  style: GoogleFonts.nunito(
-                                                    fontSize: 14.sp,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ],
+                                            placeholder: (context, url) =>
+                                                const CircularProgressIndicator(),
+                                            errorWidget:
+                                                (context, url, error) => Icon(
+                                              Icons.person,
+                                              size: 85,
+                                              color: primaryColor,
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                state.ourresponse1.result![0]
+                                                        .playerName ??
+                                                    "",
+                                                style: GoogleFonts.nunito(
+                                                  fontSize: 18.sp,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              SizedBox(height: 10.h),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "Team Position: ",
+                                                    style: GoogleFonts.nunito(
+                                                      fontSize: 14.sp,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    state
+                                                            .ourresponse1
+                                                            .result![0]
+                                                            .playerType ??
+                                                        " ",
+                                                    style: GoogleFonts.nunito(
+                                                      fontSize: 14.sp,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 )
                               else if (searchPlayer.text != "")
