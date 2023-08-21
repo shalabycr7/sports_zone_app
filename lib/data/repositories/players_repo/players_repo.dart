@@ -27,12 +27,12 @@ class Players {
     }
   }
 
-  Future<Plyer1Model?> getPlayer(String srch) async {
+  Future<Plyer1Model?> getPlayer(String srch, int teamId) async {
     try {
       http.Response response;
 
       response = await http.get(Uri.parse(
-          "https://apiv2.allsportsapi.com/football/?&playerName=$srch&met=Players&APIkey=e9b633c2759b431301301d00f9a9a3809b238030211a54b71e43e1e0db147f13"));
+          "$_baseUrl?&playerName=$srch&met=Players&APIkey=$_apiKey&teamId=$teamId"));
 
       Map<String, dynamic> decodedresponse = json.decode(response.body);
       if (response.statusCode == 200) {

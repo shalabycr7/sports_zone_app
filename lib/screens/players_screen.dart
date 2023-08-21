@@ -13,8 +13,13 @@ class PlayersScreen extends StatefulWidget {
   final int in1;
   final String teamName;
   final int id;
+  final int teamId;
   const PlayersScreen(
-      {super.key, required this.in1, required this.teamName, required this.id});
+      {super.key,
+      required this.in1,
+      required this.teamName,
+      required this.id,
+      required this.teamId});
 
   @override
   State<PlayersScreen> createState() => _PlayersScreenState();
@@ -125,7 +130,8 @@ class _PlayersScreenState extends State<PlayersScreen>
                                         if (searchPlayer.text != "") {
                                           context
                                               .read<PlayersCubit>()
-                                              .getPlayer1(searchPlayer.text);
+                                              .getPlayer1(searchPlayer.text,
+                                                  widget.teamId);
                                         } else {
                                           context
                                               .read<PlayersCubit>()
@@ -576,9 +582,7 @@ class _PlayersScreenState extends State<PlayersScreen>
                                       }),
                                 )
                               else if (state is PlayersOne &&
-                                  state.ourresponse1.result != null &&
-                                  state.ourresponse1.result![0].playerImage !=
-                                      null)
+                                  state.ourresponse1.result != null)
                                 Container(
                                   margin:
                                       const EdgeInsets.symmetric(vertical: 15),
@@ -591,15 +595,15 @@ class _PlayersScreenState extends State<PlayersScreen>
                                   child: Row(
                                     children: [
                                       CircleAvatar(
-                                        backgroundColor: const Color.fromARGB(
-                                            255, 9, 113, 134),
+                                        backgroundColor: Colors.transparent,
                                         radius: ScreenUtil().orientation ==
                                                 Orientation.landscape
                                             ? ScreenUtil().screenWidth * 0.05
                                             : ScreenUtil().screenHeight * 0.06,
                                         child: CachedNetworkImage(
                                           imageUrl: state.ourresponse1
-                                              .result![0].playerImage!,
+                                                  .result?[0].playerImage ??
+                                              "https://th.bing.com/th/id/R.3fd38d6ccfd0f7a1092c00879e737df6?rik=hu2HHcjcxoRgjA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_339111.png&ehk=1VSUO37%2fcX%2ba5RuLn%2b1VQFuCF%2fkAGZMz496wX%2fNpoLs%3d&risl=&pid=ImgRaw&r=0",
                                           imageBuilder:
                                               (context, imageProvider) =>
                                                   Container(

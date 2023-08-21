@@ -235,6 +235,10 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                       MaterialPageRoute(
                                                         builder: (context) =>
                                                             PlayersScreen(
+                                                          teamId: state
+                                                              .ourresponse
+                                                              .result![index]
+                                                              .teamKey!,
                                                           in1: index,
                                                           teamName: state
                                                               .ourresponse
@@ -409,30 +413,37 @@ class _TeamsScoresScreen extends State<TeamsScoresScreen>
                                                       ),
                                                     ),
                                                     SizedBox(height: 10.h),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          "Team Name: ",
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            fontSize: 14.sp,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight.bold,
+                                                    SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Team Name: ",
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              fontSize: 14.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Text(
-                                                          state
-                                                              .response
-                                                              .result[i]
-                                                              .teamName!,
-                                                          style: GoogleFonts
-                                                              .nunito(
-                                                            fontSize: 14.sp,
-                                                            color: Colors.black,
+                                                          Text(
+                                                            state
+                                                                .response
+                                                                .result[i]
+                                                                .teamName!,
+                                                            style: GoogleFonts
+                                                                .nunito(
+                                                              fontSize: 14.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                     Row(
                                                       children: [

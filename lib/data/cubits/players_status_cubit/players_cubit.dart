@@ -15,8 +15,8 @@ class PlayersCubit extends Cubit<PlayersState> {
     });
   }
 
-  getPlayer1(String srch,) {
-    Players().getPlayer(srch).then((value) {
+  getPlayer1(String srch,int teamId) {
+    Players().getPlayer(srch,teamId).then((value) {
       if (value != null) emit(PlayersOne(ourresponse1: value));
     });
   }
