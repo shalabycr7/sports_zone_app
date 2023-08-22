@@ -4,9 +4,7 @@ Sports app using flutter
 
 ## Features
 
-- Display information about your favourite football team by connecting to a sports API to get all
-  the
-  data.
+- Display information about your favourite football team by connecting to a sports API to get all the data.
 - Choose any country-league-team you want.
 - Search for your favourite team or player.
 - Display all the players in that team and show the status of each player like:
@@ -27,3 +25,9 @@ Sports app using flutter
 ![app_design2](https://github.com/shalabycr7/sports_zone_app/assets/17945581/221a30be-96ba-4fb0-ba8c-9d6ddb95679f)
 ![app_design3](https://github.com/shalabycr7/sports_zone_app/assets/17945581/291f6b67-101a-4602-a59e-ddc76cb2dbc9)
 ![app_design4](https://github.com/shalabycr7/sports_zone_app/assets/17945581/fd423c41-b9b1-4547-965e-96f29933ad4f)
+
+## Live Demo
+
+https://github.com/shalabycr7/sports_zone_app/assets/17945581/b0722646-db71-4180-a0e5-83c6cc82804e
+
+
