@@ -7,12 +7,12 @@ import 'package:sports_zone/data/models/leagues_model/legues_model.dart';
 
 class LeaguesModelsRepo {
   static const String _apiKey =
-      '96dcd54337dd88e5c710d0afbdafaf7f08e390184032cf6b60baf041d7733994';
+      'c4cf9b83dd238694de4a6188f2a57c794070af1fa35646b5e3285b225f9a8482';
   static const String _baseUrl = 'https://apiv2.allsportsapi.com/football/';
-  Future<Zsc?> getLeaguesModels() async {
+  Future<Zsc?> getLeaguesModels(int countryId) async {
     try {
-      var response = await http.get(
-          Uri.parse("$_baseUrl?met=Leagues&countryid=200&APIkey=$_apiKey"));
+      var response = await http.get(Uri.parse(
+          "$_baseUrl?met=Leagues&countryId=$countryId&APIkey=$_apiKey"));
 
       Map<String, dynamic> deCodedResponse = json.decode(response.body);
       if (response.statusCode == 200) {

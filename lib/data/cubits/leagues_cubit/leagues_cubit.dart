@@ -9,9 +9,9 @@ part 'leagues_state.dart';
 class LeaguesCubit extends Cubit<LeaguesState> {
   LeaguesCubit() : super(LeaguesInitial());
 
-  getLeagues() {
+  getLeagues(int countryId) {
     emit(LeaguesLoadind());
-    LeaguesModelsRepo().getLeaguesModels().then((value) {
+    LeaguesModelsRepo().getLeaguesModels(countryId).then((value) {
       if (value != null) {
         emit(LeaguesSussess(ourrresponse: value));
       } else {

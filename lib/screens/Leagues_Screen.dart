@@ -11,8 +11,8 @@ import 'package:sports_zone/shared/title_row.dart';
 import 'package:sports_zone/styles/styles_variables.dart';
 
 class LeaguesScreen extends StatefulWidget {
-  final int loop;
-  const LeaguesScreen({super.key, required this.loop});
+  final int countryId;
+  const LeaguesScreen({super.key, required this.countryId});
 
   @override
   State<LeaguesScreen> createState() => _LeaguesScreenState();
@@ -33,7 +33,6 @@ class _LeaguesScreenState extends State<LeaguesScreen>
     _animation = Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero)
         .animate(_controller);
     _controller.forward();
-    context.read<LeaguesCubit>().getLeagues();
   }
 
   @override
@@ -44,6 +43,8 @@ class _LeaguesScreenState extends State<LeaguesScreen>
 
   @override
   Widget build(BuildContext context) {
+        context.read<LeaguesCubit>().getLeagues(widget.countryId);
+
     return Scaffold(
         body: Container(
             color: Theme.of(context).colorScheme.primary,
@@ -85,126 +86,116 @@ class _LeaguesScreenState extends State<LeaguesScreen>
                                                 state.ourrresponse.result!
                                                     .length;
                                             i++)
-                                          if (state.ourrresponse.result![i]
-                                                  .countryKey ==
-                                              widget.loop)
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        TeamsScoresScreen(
-                                                      id: state
-                                                          .ourrresponse
-                                                          .result![i]
-                                                          .leagueKey!,
-                                                      name: state
-                                                          .ourrresponse
-                                                          .result![i]
-                                                          .leagueName!,
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TeamsScoresScreen(
+                                                    id: state.ourrresponse
+                                                        .result![i].leagueKey!,
+                                                    name: state.ourrresponse
+                                                        .result![i].leagueName!,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: SlideTransition(
+                                              position: _animation,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.white60,
+                                                ),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        state
+                                                                .ourrresponse
+                                                                .result![i]
+                                                                .leagueName ??
+                                                            'Unknown',
+                                                        style: GoogleFonts
+                                                            .quicksand(
+                                                                fontSize: 14.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                              child: SlideTransition(
-                                                position: _animation,
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    color: Colors.white60,
-                                                  ),
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5),
-                                                  margin: const EdgeInsets
-                                                      .symmetric(vertical: 10),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          state
+                                                    SizedBox(
+                                                      height: 80.h,
+                                                      width: 80.w,
+                                                      child: CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        radius: ScreenUtil()
+                                                                    .orientation ==
+                                                                Orientation
+                                                                    .landscape
+                                                            ? ScreenUtil()
+                                                                    .screenWidth *
+                                                                0.05
+                                                            : ScreenUtil()
+                                                                    .screenHeight *
+                                                                0.06,
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl: state
                                                                   .ourrresponse
                                                                   .result![i]
-                                                                  .leagueName ??
-                                                              'Unknown',
-                                                          style: GoogleFonts
-                                                              .quicksand(
-                                                                  fontSize:
-                                                                      14.sp,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 80.h,
-                                                        width: 80.w,
-                                                        child: CircleAvatar(
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          radius: ScreenUtil()
-                                                                      .orientation ==
-                                                                  Orientation
-                                                                      .landscape
-                                                              ? ScreenUtil()
-                                                                      .screenWidth *
-                                                                  0.05
-                                                              : ScreenUtil()
-                                                                      .screenHeight *
-                                                                  0.06,
-                                                          child:
-                                                              CachedNetworkImage(
-                                                            imageUrl: state
-                                                                    .ourrresponse
-                                                                    .result![i]
-                                                                    .leagueLogo ??
-                                                                "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
-                                                            imageBuilder: (context,
-                                                                    imageProvider) =>
-                                                                Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
+                                                                  .leagueLogo ??
+                                                              "https://jetpunk.b-cdn.net/img/user-photo-library/d8/d8f21957be-235.png",
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              image:
+                                                                  DecorationImage(
                                                                 image:
-                                                                    DecorationImage(
-                                                                  image:
-                                                                      imageProvider,
-                                                                  fit: BoxFit
-                                                                      .contain,
-                                                                ),
+                                                                    imageProvider,
+                                                                fit: BoxFit
+                                                                    .contain,
                                                               ),
                                                             ),
-                                                            placeholder: (context,
-                                                                    url) =>
-                                                                const CircularProgressIndicator(),
-                                                            errorWidget:
-                                                                (context, url,
-                                                                        error) =>
-                                                                    Icon(
-                                                              Icons.person,
-                                                              size: 85,
-                                                              color:
-                                                                  primaryColor,
-                                                            ),
+                                                          ),
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              const CircularProgressIndicator(),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Icon(
+                                                            Icons.person,
+                                                            size: 85,
+                                                            color: primaryColor,
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            )
+                                            ),
+                                          )
                                       ],
                                     ),
                                   );

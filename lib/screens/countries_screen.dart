@@ -24,8 +24,6 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    context.read<CountiresCubit>().getCountiers();
-
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     _animation =
@@ -53,70 +51,71 @@ class _MySportsState extends State<MySports> with TickerProviderStateMixin {
       mainAxisSpacing: ScreenUtil().screenWidth * 0.04,
       children: <Widget>[
         for (var country in countries)
-          if (country.countryLogo != null)
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        LeaguesScreen(loop: country.countryKey!),
-                  ),
-                );
-              },
-              child: FadeTransition(
-                opacity: _animation,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white60,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        radius:
-                            ScreenUtil().orientation == Orientation.landscape
-                                ? ScreenUtil().screenWidth * 0.05
-                                : ScreenUtil().screenHeight * 0.06,
-                        child: CachedNetworkImage(
-                          imageUrl: country.countryLogo!,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      LeaguesScreen(countryId: country.countryKey!),
+                ),
+              );
+            },
+            child: FadeTransition(
+              opacity: _animation,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white60,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      radius: ScreenUtil().orientation == Orientation.landscape
+                          ? ScreenUtil().screenWidth * 0.05
+                          : ScreenUtil().screenHeight * 0.06,
+                      child: CachedNetworkImage(
+                        imageUrl: country.countryLogo ??
+                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Image.network(
-                            'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
-                          ),
+                        ),
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Image.network(
+                          'https://th.bing.com/th/id/R.067f7bad1bf48631ec7743ac1dec086f?rik=23KOzvBuYTRJPA&riu=http%3a%2f%2fimg1.wikia.nocookie.net%2f__cb20110529184849%2fusnw%2fimages%2f8%2f8b%2fPlaceholder_flag.png&ehk=ePhmjTY3X4FCyT2lCetvagb6l0lD%2bSs%2ftLmtrmf3cn4%3d&risl=&pid=ImgRaw&r=0',
                         ),
                       ),
-                      Text(
-                        country.countryName ?? 'Unknown',
-                        style: GoogleFonts.quicksand(
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    ),
+                    Text(
+                      country.countryName ?? 'Unknown',
+                      style: GoogleFonts.quicksand(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    context.read<CountiresCubit>().getCountiers();
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: RefreshIndicator(
